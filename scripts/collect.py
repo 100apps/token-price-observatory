@@ -122,6 +122,7 @@ def official_tables(provider,body):
   cachec=next((i for i,v in enumerate(headers) if v in ['Cached input','Hits and refreshes']),None)
   variants=[n.get('data-value') for n in t.iterancestors() if n.get('data-value')]
   variant=variants[0] if variants else 'standard'
+  table_variant=variant
   for cells in g[header_idx+1:]:
    if len(cells)<=max(ic,oc):continue
    def money(v):
@@ -135,6 +136,8 @@ def official_tables(provider,body):
     if not m:continue
     model='claude-'+m[1].lower()+'-'+m[2].replace('.','-')
    cache=money(cells[cachec]) if cachec is not None else None
+   context_note=re.sub(r'^\$[\d.]+(?:\s*/\s*MTok)?','',cells[ic]).strip()
+   variant=table_variant+(' | '+context_note if context_note else '')
    r=row(provider,model,a,b,cache);r.update(variant=variant,id=provider+':'+model+':'+variant,conditions=dict(zip(headers,cells)),notes='官方表格直采；单次上下文、缓存写入与服务等级条件见详情。附加费用未计入。')
    result.append(r)
  return result
