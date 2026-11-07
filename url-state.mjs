@@ -1,5 +1,5 @@
-export const defaults={input:100000000,output:100000000,cache:90,fx:7.2,currency:'USD',search:'',provider:'',trust:'reliable',sort:'cost',tab:'prices',compareSearch:'',historyModel:'',historyRange:'30'};
-const choices={currency:['USD','CNY'],trust:['reliable','official','community',''],sort:['cost','-cost','model','provider'],tab:['prices','compare','history','sources'],historyRange:['30','90','0']};
+export const defaults={input:100000000,output:100000000,cache:90,fx:null,fxMode:'auto',currency:'CNY',search:'',provider:'',trust:'reliable',sort:'cost',tab:'prices',compareSearch:'',historyModel:'',historyRange:'30'};
+const choices={fxMode:['auto','manual'],currency:['USD','CNY'],trust:['reliable','official','community',''],sort:['cost','-cost','model','provider'],tab:['prices','compare','history','sources'],historyRange:['30','90','0']};
 export function normalize(state={}){
  const result={...defaults};
  for(const key of Object.keys(result)){
@@ -13,5 +13,5 @@ export function normalize(state={}){
  }
  return result;
 }
-export function readState(url){return normalize(Object.fromEntries(new URL(url).searchParams))}
-export function writeState(url,state){const u=new URL(url),s=normalize(state);for(const k of Object.keys(defaults))u.searchParams.set(k,String(s[k]));return u.href}
+export function readState(url){const raw=Object.fromEntries(new URL(url).searchParams);if(normalize({fx:raw.fx}).fx!==null&&!raw.fxMode)raw.fxMode='manual';return normalize(raw)}
+export function writeState(url,state){const u=new URL(url),s=normalize(state);for(const k of Object.keys(defaults))s[k]==null?u.searchParams.delete(k):u.searchParams.set(k,String(s[k]));return u.href}

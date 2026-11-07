@@ -3,6 +3,7 @@ import argparse, concurrent.futures, datetime as dt, gzip, hashlib, json, re, ti
 from pathlib import Path
 from lxml import html
 from quality import validate_batch, review_batch
+import exchange
 ROOT=Path(__file__).resolve().parents[1]
 SOURCES={
  'openrouter':'https://openrouter.ai/api/v1/models',
@@ -243,7 +244,8 @@ def main(accepted=None):
  previous=json.loads((ROOT/'data/latest.json').read_text()) if (ROOT/'data/latest.json').exists() else {'models':[]}
  health_path=ROOT/'data/health.json'
  previous_health=json.loads(health_path.read_text()) if health_path.exists() else {'last_success_at':previous.get('collected_at')}
- statuses=[];payloads={}
+ exchange_rate,fx_status=exchange.update(ROOT,now,atomic_json)
+ statuses=[fx_status];payloads={}
  def fetch(item):
   key,url=item
   for attempt in range(3):
@@ -296,7 +298,7 @@ def main(accepted=None):
  # An archived document is evidence, not a verified structured price.
  official_pairs={(r['provider'],r['canonical']) for r in models if r['provenance']=='official' and not r.get('stale')}
  models=[r for r in models if r['provenance']=='official' or (r['provider'],r['canonical']) not in official_pairs]
- unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.1.0',collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
+ unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.3.0',exchange_rate=exchange_rate,collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
  saved=save_result(snapshot,stamp,previous_health)
  print(json.dumps({'models':len(unique),'sources':statuses},ensure_ascii=False))
  if any(s['status']=='failed' or s.get('warnings') for s in statuses):print('::warning::Prices quarantined or sources failed; inspect data/health.json')

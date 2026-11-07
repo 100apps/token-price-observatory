@@ -4,3 +4,5 @@
 .share-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.share-bar span{font-size:11px;color:#5b7964}.share-bar input{width:min(75vw,600px)}
 
 #health{font-size:12px;line-height:1.8;margin:15px 0;color:#786034}
+
+.fx-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:14px 0}.fx-controls label{max-width:170px}.fx-controls select{padding:7px}.fx-controls span{font-size:11px;color:#65715b;overflow-wrap:anywhere}

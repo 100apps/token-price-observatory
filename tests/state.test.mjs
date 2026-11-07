@@ -11,3 +11,6 @@ test('fresh official only; old, failed, community and future timestamps excluded
  const now=Date.parse('2026-11-07T12:00:00Z'),r={provenance:'official',observed_at:'2026-11-07T11:00:00Z',stale:false};
  assert.equal(isReliable(r,now),true);for(const override of [{stale:true},{provenance:'community'},{observed_at:'bad'},{observed_at:'2026-11-01T00:00:00Z'},{observed_at:'2026-11-08T00:00:00Z'}])assert.equal(isReliable({...r,...override},now),false);
 });
+test('new visits default to CNY and automatic FX; old explicit rates stay manual',()=>{
+ assert.equal(readState('https://example.com/').currency,'CNY');assert.equal(readState('https://example.com/').fxMode,'auto');assert.equal(readState('https://example.com/?fx=7.1').fxMode,'manual');assert.equal(readState('https://example.com/?fx=7.1&fxMode=auto').fxMode,'auto');
+});
