@@ -1,6 +1,6 @@
 {
-  "attempted_at": "2026-11-07T04:27:21.678195+00:00",
-  "last_success_at": "2026-11-07T04:27:21.678195+00:00",
+  "attempted_at": "2026-11-07T04:29:59.366731+00:00",
+  "last_success_at": "2026-11-07T04:29:59.366731+00:00",
   "status": "degraded",
   "fresh_official_quotes": 1349,
   "failed_sources": [],
@@ -13,7 +13,7 @@
       "status": "parsed",
       "sha256": "698a13bc59aae65b8afd79b37e271d62f299a00218ba6d652dbe5a5bc765da28",
       "raw": "data/raw/69/698a13bc59aae65b8afd79b37e271d62f299a00218ba6d652dbe5a5bc765da28.json.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "warnings": [
         "Price changed over 50% or crossed zero; manual review required: openrouter:~deepseek/deepseek-v4-flash-latest:standard / cache_read"
       ],
@@ -24,9 +24,9 @@
       "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
       "final_url": "https://help.aliyun.com/zh/model-studio/model-pricing",
       "status": "parsed",
-      "sha256": "278612dfc2d2d58b65d2db6252c6d72fd932641309706d53deb3c69d14ab5ed6",
-      "raw": "data/raw/27/278612dfc2d2d58b65d2db6252c6d72fd932641309706d53deb3c69d14ab5ed6.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "sha256": "11a73bf775934391ca78b623fdf9bc26e2792a625f4670fd28582c792ecf65c9",
+      "raw": "data/raw/11/11a73bf775934391ca78b623fdf9bc26e2792a625f4670fd28582c792ecf65c9.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 719
     },
     {
@@ -36,7 +36,7 @@
       "status": "parsed",
       "sha256": "15d206183535ab1de4658e585982cda6337e9af7cbf9fb69bebb1b4a20762724",
       "raw": "data/raw/15/15d206183535ab1de4658e585982cda6337e9af7cbf9fb69bebb1b4a20762724.json.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 1148
     },
     {
@@ -46,7 +46,7 @@
       "status": "parsed",
       "sha256": "f30a6e3d9674a896c8197e146e6682b6b120075e1e4b0c9d34d40a18cc686d07",
       "raw": "data/raw/f3/f30a6e3d9674a896c8197e146e6682b6b120075e1e4b0c9d34d40a18cc686d07.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 25
     },
     {
@@ -54,9 +54,9 @@
       "url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "final_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "status": "parsed",
-      "sha256": "9cb592c61294761eb8be5e9a31bb01271a6d1d88a213c463f90132c7eef57924",
-      "raw": "data/raw/9c/9cb592c61294761eb8be5e9a31bb01271a6d1d88a213c463f90132c7eef57924.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "sha256": "2dbf8b1cc0a3475f1ebea4916cd4b9c0d2bac4d383cbc65dc65f95d179d93b4c",
+      "raw": "data/raw/2d/2dbf8b1cc0a3475f1ebea4916cd4b9c0d2bac4d383cbc65dc65f95d179d93b4c.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 20
     },
     {
@@ -64,9 +64,9 @@
       "url": "https://ai.google.dev/gemini-api/docs/pricing",
       "final_url": "https://aistudio.google.com/docs/pricing",
       "status": "archived",
-      "sha256": "2dc476d586791cf19224fd885a155ec3e999fb6c3b183d430f5b726115a065d5",
-      "raw": "data/raw/2d/2dc476d586791cf19224fd885a155ec3e999fb6c3b183d430f5b726115a065d5.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "sha256": "8c9b2afd283b689b2171c2205f2ba2feb165fc68c67e780645da3ead6783e503",
+      "raw": "data/raw/8c/8c9b2afd283b689b2171c2205f2ba2feb165fc68c67e780645da3ead6783e503.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "deepseek",
@@ -75,7 +75,7 @@
       "status": "parsed",
       "sha256": "07e68850f45ff5afc35a10f03831673beb5667d9c31d2b386ddf6c465b9e7eaf",
       "raw": "data/raw/07/07e68850f45ff5afc35a10f03831673beb5667d9c31d2b386ddf6c465b9e7eaf.md.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 4
     },
     {
@@ -85,7 +85,7 @@
       "status": "archived",
       "sha256": "cce1dedd6dcd4743ddda42eb3b9e894b1fa15927965bf8eec316f634898d0dee",
       "raw": "data/raw/cc/cce1dedd6dcd4743ddda42eb3b9e894b1fa15927965bf8eec316f634898d0dee.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "zhipu",
@@ -94,7 +94,7 @@
       "status": "archived",
       "sha256": "fcbf76141f6b40a94672c74e72f633738f95aefdc6cf72f0350297d15bffc13e",
       "raw": "data/raw/fc/fcbf76141f6b40a94672c74e72f633738f95aefdc6cf72f0350297d15bffc13e.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "zai",
@@ -103,25 +103,25 @@
       "status": "archived",
       "sha256": "d42dfc1c83c91a3e0a9782c866bf3111e6432431b33b64c240eaa70b57cced2f",
       "raw": "data/raw/d4/d42dfc1c83c91a3e0a9782c866bf3111e6432431b33b64c240eaa70b57cced2f.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "volcengine",
       "url": "https://www.volcengine.com/docs/82379/1544106",
       "final_url": "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
       "status": "archived",
-      "sha256": "77a9384327d5ad3c3b03f8c15774bf28a0eec6572d4d1e475dbaf8706a50eeaf",
-      "raw": "data/raw/77/77a9384327d5ad3c3b03f8c15774bf28a0eec6572d4d1e475dbaf8706a50eeaf.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "sha256": "bd37702634abf9edf5411b8e1975423c473122c84085e008a87c7c155caab07a",
+      "raw": "data/raw/bd/bd37702634abf9edf5411b8e1975423c473122c84085e008a87c7c155caab07a.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "siliconflow",
       "url": "https://siliconflow.cn/pricing",
       "final_url": "https://www.siliconflow.cn/pricing",
       "status": "parsed",
-      "sha256": "823ce71bfd8cbc72a3d1938e0592f22e0aa4f273e86705d60c1ace73130e5802",
-      "raw": "data/raw/82/823ce71bfd8cbc72a3d1938e0592f22e0aa4f273e86705d60c1ace73130e5802.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "sha256": "f2cc0ad485983c66d093e011961e186a0a613390acca2f5b129a1647754f4a57",
+      "raw": "data/raw/f2/f2cc0ad485983c66d093e011961e186a0a613390acca2f5b129a1647754f4a57.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 37
     },
     {
@@ -129,9 +129,9 @@
       "url": "https://cloud.tencent.com/document/product/1729/97731",
       "final_url": "https://cloud.tencent.com/document/product/1729/97731",
       "status": "archived",
-      "sha256": "1b59230ca187be4e355271bf1b5d7157be3e4cefde074f77e9bab4ac470392c0",
-      "raw": "data/raw/1b/1b59230ca187be4e355271bf1b5d7157be3e4cefde074f77e9bab4ac470392c0.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "sha256": "7dc398a27751fd122e2e853a75aa1d6cd6ec8f144374170faaab1edcc35829fe",
+      "raw": "data/raw/7d/7dc398a27751fd122e2e853a75aa1d6cd6ec8f144374170faaab1edcc35829fe.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "minimax",
@@ -140,7 +140,7 @@
       "status": "parsed",
       "sha256": "4f0d93a22da6932b6aad3f25adf7bcc32dfc057bb682b20fa3cc196b0e3388ca",
       "raw": "data/raw/4f/4f0d93a22da6932b6aad3f25adf7bcc32dfc057bb682b20fa3cc196b0e3388ca.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 1
     },
     {
@@ -150,16 +150,16 @@
       "status": "archived",
       "sha256": "778111a97712eb7d60f788600bf5c74405a911ab07086a04c7712214e5b5244b",
       "raw": "data/raw/77/778111a97712eb7d60f788600bf5c74405a911ab07086a04c7712214e5b5244b.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "xai",
       "url": "https://docs.x.ai/docs/models",
       "final_url": "https://docs.x.ai/developers/models",
       "status": "archived",
-      "sha256": "c06deef6ef89157d1b7e7f357453650292609c390d2376697b9c1a8b584a7bee",
-      "raw": "data/raw/c0/c06deef6ef89157d1b7e7f357453650292609c390d2376697b9c1a8b584a7bee.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "sha256": "ded5ee2659f02e6a0bd8d3250bed9772320104d6ea5db73622673a0d6c0f4274",
+      "raw": "data/raw/de/ded5ee2659f02e6a0bd8d3250bed9772320104d6ea5db73622673a0d6c0f4274.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "together_ai",
@@ -168,16 +168,16 @@
       "status": "archived",
       "sha256": "45fa4019c9328094badd4a0a0953fb2209e6b5a808ca1ede4ad3b484dc4ea6ef",
       "raw": "data/raw/45/45fa4019c9328094badd4a0a0953fb2209e6b5a808ca1ede4ad3b484dc4ea6ef.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "deepinfra",
       "url": "https://api.deepinfra.com/models/list",
       "final_url": "https://api.deepinfra.com/models/list",
       "status": "parsed",
-      "sha256": "ecb87dd2d3c0df6d5bb26e4d4456a9501485bb8d8fd61065355c4de90fc53350",
-      "raw": "data/raw/ec/ecb87dd2d3c0df6d5bb26e4d4456a9501485bb8d8fd61065355c4de90fc53350.json.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00",
+      "sha256": "272fb60c01e05492463ddf079311892e9574b6374c0188bffbf9d0bf3877b4e8",
+      "raw": "data/raw/27/272fb60c01e05492463ddf079311892e9574b6374c0188bffbf9d0bf3877b4e8.json.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00",
       "count": 92
     },
     {
@@ -185,27 +185,27 @@
       "url": "https://fireworks.ai/pricing",
       "final_url": "https://fireworks.ai/pricing",
       "status": "archived",
-      "sha256": "2349fc236b193a5b57cfcc43ab897d00957f1ce9a6918fde44b0733cdd042348",
-      "raw": "data/raw/23/2349fc236b193a5b57cfcc43ab897d00957f1ce9a6918fde44b0733cdd042348.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "sha256": "9597d4bf55b682e0252910119e5ceee7a1e08cbba5c3d2b8c6a11db80550be6b",
+      "raw": "data/raw/95/9597d4bf55b682e0252910119e5ceee7a1e08cbba5c3d2b8c6a11db80550be6b.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "bedrock",
       "url": "https://aws.amazon.com/bedrock/pricing/",
       "final_url": "https://aws.amazon.com/bedrock/pricing/",
       "status": "archived",
-      "sha256": "0168d34d709c19b389ab60cff832e92b63005eb77802a1b74f8370dfa25ff320",
-      "raw": "data/raw/01/0168d34d709c19b389ab60cff832e92b63005eb77802a1b74f8370dfa25ff320.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "sha256": "1ddca46b35ad9b148e631c0f6682ec6d4bade316c493fd7125fa49b599f7360b",
+      "raw": "data/raw/1d/1ddca46b35ad9b148e631c0f6682ec6d4bade316c493fd7125fa49b599f7360b.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     },
     {
       "provider": "azure",
       "url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/",
       "final_url": "https://azure.microsoft.com/en-us/pricing/details/azure-openai/",
       "status": "archived",
-      "sha256": "f750de338355173588fb7b6cb8df99a83ae7e21b3870212ec07a0e375d9e763c",
-      "raw": "data/raw/f7/f750de338355173588fb7b6cb8df99a83ae7e21b3870212ec07a0e375d9e763c.html.gz",
-      "fetched_at": "2026-11-07T04:27:21.678195+00:00"
+      "sha256": "7d9891649dda5ef1b07dda23d3d257614b0b47e60c0cf069d30e16a08cb7acf9",
+      "raw": "data/raw/7d/7d9891649dda5ef1b07dda23d3d257614b0b47e60c0cf069d30e16a08cb7acf9.html.gz",
+      "fetched_at": "2026-11-07T04:29:59.366731+00:00"
     }
   ]
 }
