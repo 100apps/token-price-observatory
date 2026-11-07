@@ -1,0 +1,174 @@
+"""Public, keyless price collection. Never replace failed data with invented rates."""
+import concurrent.futures, datetime as dt, hashlib, json, re, time, urllib.request
+from pathlib import Path
+from lxml import html
+ROOT=Path(__file__).resolve().parents[1]
+SOURCES={
+ 'openrouter':'https://openrouter.ai/api/v1/models',
+ 'bailian':'https://help.aliyun.com/zh/model-studio/model-pricing',
+ 'community':'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json',
+ 'openai':'https://developers.openai.com/api/docs/pricing',
+ 'anthropic':'https://platform.claude.com/docs/en/about-claude/pricing',
+ 'gemini':'https://ai.google.dev/gemini-api/docs/pricing',
+ 'deepseek':'https://api-docs.deepseek.com/quick_start/pricing',
+ 'moonshot':'https://platform.moonshot.cn/docs/pricing/chat',
+ 'zhipu':'https://docs.bigmodel.cn/cn/guide/models/text',
+ 'volcengine':'https://www.volcengine.com/docs/82379/1544106',
+ 'siliconflow':'https://siliconflow.cn/pricing',
+ 'tencent':'https://cloud.tencent.com/document/product/1729/97731',
+ 'minimax':'https://platform.minimaxi.com/docs/guides/pricing-paygo',
+ 'mistral':'https://mistral.ai/pricing',
+ 'xai':'https://docs.x.ai/docs/models',
+ 'together_ai':'https://www.together.ai/pricing',
+ 'deepinfra':'https://deepinfra.com/models',
+ 'fireworks_ai':'https://fireworks.ai/pricing',
+ 'bedrock':'https://aws.amazon.com/bedrock/pricing/',
+ 'azure':'https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/'
+}
+NAMES={'openai':'OpenAI','anthropic':'Anthropic','gemini':'Google Gemini','deepseek':'DeepSeek','moonshot':'月之暗面 Kimi','zhipu':'智谱','volcengine':'火山方舟','siliconflow':'硅基流动','tencent':'腾讯混元','minimax':'MiniMax','bailian':'阿里云百炼','openrouter':'OpenRouter'}
+def number(v):
+ try:
+  n=float(v)
+  return n if 0<=n<1e12 else None
+ except (ValueError,TypeError):return None
+
+def canonical(s):
+ # Exact version identifiers only; do not conflate aliases or differently quantized models.
+ return s.lower().split('/')[-1].replace('anthropic.','').replace('meta-llama.','')
+
+def row(provider,model,inp,out,cache=None,**kw):
+ return dict(id=provider+':'+model+':'+str(kw.get('variant','standard')),provider=provider,platform=NAMES.get(provider,provider),model=model,canonical=canonical(model),currency='USD',input=inp,output=out,cache_read=cache,source=SOURCES.get(provider),provenance='official',variant='standard',**kw)
+
+def openrouter(data):
+ result=[]
+ for m in data['data']:
+  if 'text' not in m.get('architecture',{}).get('output_modalities',['text']):continue
+  p=m.get('pricing',{});a,b=number(p.get('prompt')),number(p.get('completion'))
+  if a is None or b is None:continue
+  r=row('openrouter',m['id'],a*1e6,b*1e6, None if number(p.get('input_cache_read')) is None else float(p['input_cache_read'])*1e6)
+  r.update(context=m.get('context_length'),name=m.get('name'),conditions={k:v for k,v in p.items() if k not in ['prompt','completion','input_cache_read']},source='https://openrouter.ai/'+m['id']);result.append(r)
+ return result
+
+def grid(table):
+ occupied={};rows=[]
+ for ri,tr in enumerate(table.xpath('./thead/tr|./tbody/tr|./tr')):
+  vals={c:v for (r,c),v in occupied.items() if r==ri};c=0
+  for cell in tr.xpath('./th|./td'):
+   while c in vals:c+=1
+   val=' '.join(cell.text_content().split());rs=int(cell.get('rowspan','1'));cs=int(cell.get('colspan','1'))
+   for rr in range(ri,ri+rs):
+    for cc in range(c,c+cs):occupied[rr,cc]=val
+   vals.update({cc:val for cc in range(c,c+cs)});c+=cs
+  rows.append([vals.get(i,'') for i in range(max(vals,default=-1)+1)])
+ return rows
+
+def bailian(body):
+ doc=html.fromstring(body);result=[];seen=set()
+ for ti,t in enumerate(doc.xpath('//table')):
+  headings=t.xpath('preceding::*[self::h2 or self::h3 or self::h4]')
+  section=' / '.join(' '.join(h.text_content().split()) for h in headings[-3:])
+  g=grid(t)
+  if not g:continue
+  headers=g[0]
+  if not any('每百万' in v for v in headers):continue
+  ic=next((i for i,h in enumerate(headers) if '输入单价' in h),None);oc=next((i for i,h in enumerate(headers) if '输出单价' in h),None)
+  if ic is None or oc is None:continue
+  for cells in g[1:]:
+   if len(cells)<=max(ic,oc):continue
+   model=re.match(r'([a-zA-Z][a-zA-Z0-9_.:/-]+)',cells[0])
+   a=re.fullmatch(r'([\d.]+)\s*元',cells[ic]);b=re.fullmatch(r'([\d.]+)\s*元',cells[oc])
+   if not (model and a and b):continue
+   conditions=section+' | '+' | '.join(cells[1:ic]);signature=(model[1],conditions,a[1],b[1])
+   if signature in seen:continue
+   seen.add(signature)
+   r=row('bailian',model[1],float(a[1]),float(b[1]));r.update(currency='CNY',variant=conditions or '官网表格 '+str(ti),id='bailian:'+hashlib.sha256(repr(signature).encode()).hexdigest()[:18],conditions=cells,notes='按官网表格条件报价；缓存折扣未可靠解析，保守按普通输入计费。地区未列出时请核对官网章节。');result.append(r)
+ return result
+
+def community(data):
+ result=[]
+ for model,p in data.items():
+  if not isinstance(p,dict) or p.get('mode') not in ['chat','completion']:continue
+  provider=p.get('litellm_provider')
+  if provider not in SOURCES or provider in ['community','bailian','openrouter']:continue
+  if p.get('deprecation_date','9999') < dt.date.today().isoformat():continue
+  a,b=number(p.get('input_cost_per_token')),number(p.get('output_cost_per_token'))
+  if a is None or b is None:continue
+  r=row(provider,model,a*1e6,b*1e6, None if number(p.get('cache_read_input_token_cost')) is None else p['cache_read_input_token_cost']*1e6)
+  r.update(provenance='community',catalog=SOURCES['community'],source=p.get('source') if str(p.get('source','')).startswith('https://') else SOURCES[provider],conditions={k:v for k,v in p.items() if any(s in k for s in ['cost','pricing','region'])},notes='社区目录报价，官方页面已另行归档，未逐项自动核验。阶梯/Batch/Flex/优先级等条件见详情，不自动套用。',context=p.get('max_input_tokens'));result.append(r)
+ return result
+
+def official_tables(provider,body):
+ doc=html.fromstring(body);result=[]
+ for ti,t in enumerate(doc.xpath('//table')):
+  if provider=='anthropic' and ti!=0:continue
+  g=grid(t)
+  header_idx=next((i for i,r in enumerate(g[:3]) if 'Input' in r and 'Output' in r),None)
+  if header_idx is None:continue
+  headers=g[header_idx]
+  if any(v in headers for v in ['Training','Modality']):continue
+  ic,oc=headers.index('Input'),headers.index('Output')
+  mc=next((i for i,v in enumerate(headers) if v in ['Name','Model','Model configuration']),None)
+  if mc is None:continue
+  cachec=next((i for i,v in enumerate(headers) if v in ['Cached input','Hits and refreshes']),None)
+  variants=[n.get('data-value') for n in t.iterancestors() if n.get('data-value')]
+  variant=variants[0] if variants else 'standard'
+  for cells in g[header_idx+1:]:
+   if len(cells)<=max(ic,oc):continue
+   def money(v):
+    m=re.match(r'^\$([\d.]+)(?:\s*/\s*MTok)?',v)
+    return float(m[1]) if m else None
+   a,b=money(cells[ic]),money(cells[oc])
+   if a is None or b is None:continue
+   model=cells[mc]
+   if provider=='anthropic':
+    m=re.match(r'Claude (Fable|Opus|Sonnet|Haiku|Mythos) (\d+(?:\.\d+)?)',model)
+    if not m:continue
+    model='claude-'+m[1].lower()+'-'+m[2].replace('.','-')
+   cache=money(cells[cachec]) if cachec is not None else None
+   r=row(provider,model,a,b,cache);r.update(variant=variant,id=provider+':'+model+':'+variant,conditions=dict(zip(headers,cells)),notes='官方表格直采；单次上下文、缓存写入与服务等级条件见详情。附加费用未计入。')
+   result.append(r)
+ return result
+
+def main():
+ now=dt.datetime.now(dt.timezone.utc);stamp=now.strftime('%Y-%m-%dT%H-%M-%S.%fZ');rawdir=ROOT/'data/raw'/stamp;rawdir.mkdir(parents=True)
+ previous=json.loads((ROOT/'data/latest.json').read_text()) if (ROOT/'data/latest.json').exists() else {'models':[]}
+ statuses=[];payloads={}
+ def fetch(item):
+  key,url=item
+  for attempt in range(3):
+   try:
+    req=urllib.request.Request(url,headers={'User-Agent':'TokenPriceObservatory/1.0 (+https://github.com/100apps/token-price-observatory)'})
+    with urllib.request.urlopen(req,timeout=45) as r:body=r.read();final=r.url
+    ext='json' if key in ['openrouter','community'] else 'html';path=rawdir/(key+'.'+ext);path.write_bytes(body)
+    return key,body,dict(provider=key,url=url,final_url=final,status='archived',sha256=hashlib.sha256(body).hexdigest(),raw=str(path.relative_to(ROOT)),fetched_at=now.isoformat())
+   except Exception as e:
+    if attempt==2:return key,None,dict(provider=key,url=url,status='failed',error=str(e)[:250],attempted_at=now.isoformat())
+    time.sleep(attempt+1)
+ with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+  for key,body,status in pool.map(fetch,SOURCES.items()):statuses.append(status);payloads[key]=body
+ models=[]
+ for key,parser in [('openrouter',lambda b:openrouter(json.loads(b))),('bailian',bailian),('openai',lambda b:official_tables('openai',b)),('anthropic',lambda b:official_tables('anthropic',b)),('community',lambda b:community(json.loads(b)))]:
+  status=next(s for s in statuses if s['provider']==key)
+  try:
+   if payloads[key] is None:raise ValueError('fetch failed')
+   parsed=parser(payloads[key]);assert parsed,'No prices parsed'
+   for r in parsed:r.update(observed_at=now.isoformat(),stale=False)
+   models+=parsed;status.update(status='parsed',count=len(parsed))
+  except Exception as e:
+   status.update(status='failed',error=str(e))
+   old=[r for r in previous['models'] if (r['provenance']=='community' if key=='community' else r['provider']==key and r['provenance']=='official')]
+   for r in old:r['stale']=True
+   models+=old
+ # An archived document is evidence, not a verified structured price.
+ official_pairs={(r['provider'],r['canonical']) for r in models if r['provenance']=='official' and not r.get('stale')}
+ models=[r for r in models if r['provenance']=='official' or (r['provider'],r['canonical']) not in official_pairs]
+ unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
+ if not models:raise RuntimeError('No prices; latest left unchanged')
+ history=ROOT/'data/history';history.mkdir(exist_ok=True)
+ target=history/(stamp+'.json');target.write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)+'\n')
+ latest=ROOT/'data/latest.json';tmp=latest.with_suffix('.tmp');tmp.write_bytes(target.read_bytes());tmp.replace(latest)
+ index=sorted([p.name for p in history.glob('*.json')],reverse=True)
+ (ROOT/'data/history/index.json').write_text(json.dumps([n for n in index if n!='index.json'],indent=2)+'\n')
+ print(json.dumps({'models':len(unique),'sources':statuses},ensure_ascii=False))
+ if any(s['status']=='failed' for s in statuses):print('::warning::Some sources failed; inspect data/latest.json sources')
+if __name__=='__main__':main()
