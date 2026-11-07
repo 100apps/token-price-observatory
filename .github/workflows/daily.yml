@@ -2,6 +2,7 @@ name: Daily prices and GitHub Pages
 on:
   schedule:
     - cron: '23 2 * * *'
+    - cron: '23 6 * * *'
   workflow_dispatch:
   push:
     branches: [main]
@@ -15,8 +16,17 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    outputs:
+      unhealthy: ${{ steps.health.outputs.unhealthy }}
     steps:
       - uses: actions/checkout@v4
+      - name: Decide whether backup retry is needed
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: python scripts/should_collect.py
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -26,18 +36,36 @@ jobs:
           node-version: '22'
       - run: python -m unittest discover -s tests -v && node --test tests/*.test.mjs
       - name: Collect daily snapshot
-        if: github.event_name != 'push'
-        run: python scripts/collect.py
-      - name: Commit evidence and snapshots
-        if: github.event_name != 'push'
+        id: refresh
+        if: github.event_name != 'push' && steps.gate.outputs.collect == 'true'
+        continue-on-error: true
+        run: python scripts/refresh.py
+      - name: Retain recovery data even if committing or deployment fails
+        if: always() && github.event_name != 'push' && steps.gate.outputs.collect == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovery-data-${{ github.run_id }}
+          path: data/
+          retention-days: 14
+      - name: Commit evidence and health with concurrent-push recovery
+        if: github.event_name != 'push' && steps.gate.outputs.collect == 'true'
+        run: python scripts/publish_data.py
+      - name: Validate deployment and report health
+        id: health
+        env:
+          REFRESH_OUTCOME: ${{ steps.refresh.outcome }}
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data
-          if ! git diff --cached --quiet; then
-            git commit -m "data: daily price snapshot $(date -u +%F)"
-            git push
-          fi
+          python scripts/validate_site.py
+          python - <<'PY'
+          import json,os
+          h=json.load(open('data/health.json'))
+          bad=h['status']=='failed' or bool(h.get('failed_sources')) or os.environ['REFRESH_OUTCOME']=='failure'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('unhealthy='+str(bad).lower()+'\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('## Price update health\n\n')
+              f.write(f"Status: {h['status']}\n\nLast successful official update: {h.get('last_success_at')}\n\n")
+              f.write(f"Failed sources: {h.get('failed_sources')}\n\nQuotes awaiting review: {h.get('review_warnings',0)}\n")
+          PY
       - name: Stage static site
         run: |
           mkdir -p _site
@@ -51,6 +79,7 @@ jobs:
   deploy:
     needs: collect
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -58,3 +87,8 @@ jobs:
       - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Signal update failure after publishing last usable prices and health
+        if: needs.collect.outputs.unhealthy == 'true'
+        run: |
+          echo '::error::Some sources failed. The last usable prices remain published; see data/health.json and the job summary. The backup schedule retries at 06:23 UTC.'
+          exit 1

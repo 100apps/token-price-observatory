@@ -210,10 +210,39 @@ def minimax(body):
    r=row('minimax',m[1],*rates);r.update(currency='CNY',conditions=cells);result.append(r)
  return result
 
+def atomic_json(path,value):
+ path.parent.mkdir(parents=True,exist_ok=True)
+ temp=path.with_suffix(path.suffix+'.tmp')
+ temp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+ temp.replace(path)
+
+def save_result(snapshot,stamp,previous_health):
+ """Commit the latest pointer last; failed attempts never advance price freshness."""
+ fresh=[r for r in snapshot['models'] if r['provenance']=='official' and not r.get('stale') and r.get('observed_at')==snapshot['collected_at']]
+ failed=[s['provider'] for s in snapshot['sources'] if s['status']=='failed']
+ warnings=sum(len(s.get('warnings',[])) for s in snapshot['sources'])
+ health=dict(attempted_at=snapshot['collected_at'],last_success_at=snapshot['collected_at'] if fresh else previous_health.get('last_success_at'),status='failed' if not fresh else 'degraded' if failed or warnings else 'ok',fresh_official_quotes=len(fresh),failed_sources=failed,review_warnings=warnings,sources=snapshot['sources'])
+ if not fresh:
+  atomic_json(ROOT/'data/attempts'/(stamp+'.json'),health)
+  atomic_json(ROOT/'data/health.json',health)
+  return False
+ history=ROOT/'data/history';history.mkdir(parents=True,exist_ok=True)
+ encoded=(json.dumps(snapshot,ensure_ascii=False,indent=2)+'\n').encode()
+ target=history/(stamp+'.json.gz');temp=target.with_suffix('.tmp')
+ temp.write_bytes(gzip.compress(encoded,mtime=0));temp.replace(target)
+ index=sorted([p.name for p in history.iterdir() if p.name.endswith(('.json','.json.gz')) and p.name!='index.json'],reverse=True)
+ atomic_json(history/'index.json',index)
+ # Only fully staged snapshots become current. health is separate from price data.
+ latest=ROOT/'data/latest.json';temp=latest.with_suffix('.tmp');temp.write_bytes(encoded);temp.replace(latest)
+ atomic_json(ROOT/'data/health.json',health)
+ return True
+
 def main(accepted=None):
  accepted=accepted or {}
  now=dt.datetime.now(dt.timezone.utc);stamp=now.strftime('%Y-%m-%dT%H-%M-%S.%fZ');rawdir=ROOT/'data/raw'/stamp;rawdir.mkdir(parents=True)
  previous=json.loads((ROOT/'data/latest.json').read_text()) if (ROOT/'data/latest.json').exists() else {'models':[]}
+ health_path=ROOT/'data/health.json'
+ previous_health=json.loads(health_path.read_text()) if health_path.exists() else {'last_success_at':previous.get('collected_at')}
  statuses=[];payloads={}
  def fetch(item):
   key,url=item
@@ -226,7 +255,7 @@ def main(accepted=None):
     return key,body,dict(provider=key,url=url,final_url=final,status='archived',sha256=hashlib.sha256(body).hexdigest(),raw=str(path.relative_to(ROOT)),fetched_at=now.isoformat())
    except Exception as e:
     if attempt==2:return key,None,dict(provider=key,url=url,status='failed',error=str(e)[:250],attempted_at=now.isoformat())
-    time.sleep(attempt+1)
+    time.sleep(2*(4**attempt))
  with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
   for key,body,status in pool.map(fetch,SOURCES.items()):statuses.append(status);payloads[key]=body
  models=[]
@@ -268,15 +297,10 @@ def main(accepted=None):
  official_pairs={(r['provider'],r['canonical']) for r in models if r['provenance']=='official' and not r.get('stale')}
  models=[r for r in models if r['provenance']=='official' or (r['provider'],r['canonical']) not in official_pairs]
  unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.1.0',collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
- if not models:raise RuntimeError('No prices; latest left unchanged')
- history=ROOT/'data/history';history.mkdir(exist_ok=True)
- encoded=(json.dumps(snapshot,ensure_ascii=False,indent=2)+'\n').encode()
- target=history/(stamp+'.json.gz');target.write_bytes(gzip.compress(encoded,mtime=0))
- latest=ROOT/'data/latest.json';tmp=latest.with_suffix('.tmp');tmp.write_bytes(encoded);tmp.replace(latest)
- index=sorted([p.name for p in history.iterdir() if p.name.endswith(('.json','.json.gz'))],reverse=True)
- (ROOT/'data/history/index.json').write_text(json.dumps([n for n in index if n!='index.json'],indent=2)+'\n')
+ saved=save_result(snapshot,stamp,previous_health)
  print(json.dumps({'models':len(unique),'sources':statuses},ensure_ascii=False))
- if any(s['status']=='failed' or s.get('warnings') for s in statuses):print('::warning::Prices quarantined or sources failed; inspect data/latest.json sources')
+ if any(s['status']=='failed' or s.get('warnings') for s in statuses):print('::warning::Prices quarantined or sources failed; inspect data/health.json')
+ return saved
 if __name__=='__main__':
  cli=argparse.ArgumentParser()
  cli.add_argument('--accept-source',action='append',default=[],metavar='PROVIDER=SHA256',help='After manual official-source review, accept only this exact document digest')
@@ -286,4 +310,4 @@ if __name__=='__main__':
   key,sep,digest=value.partition('=')
   if not sep or key not in SOURCES or not re.fullmatch('[a-f0-9]{64}',digest):cli.error('Expected known PROVIDER=SHA256')
   accepted[key]=digest
- main(accepted)
+ raise SystemExit(0 if main(accepted) else 2)
