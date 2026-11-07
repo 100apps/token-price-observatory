@@ -1,4 +1,4 @@
-import{calculate,convert}from'./calc.mjs';
+import{calculate,convert,formatTokenCount}from'./calc.mjs';
 import{defaults,normalize,readState,writeState}from'./url-state.mjs';
 import{isReliable}from'./quality.mjs';
 import{platformName,platformRank,selectModels,groupModels}from'./catalog.mjs';
@@ -22,6 +22,7 @@ function quoteRows(rs){
  return rs.map(r=>`<tr><td><strong>${esc(r.variant)}</strong><small>${r.provenance==='official'?'官方直采':'社区目录'}${r.stale?' · 旧报价':''}</small></td><td class="money">${price(r,r.input)}</td><td class="money">${price(r,r.cache_read)}${r.cache_read==null?'<small>按普通输入估算</small>':''}</td><td class="money">${price(r,r.output)}</td><td class="money cost">${amount(cost(r))}</td><td>${details(r)}</td></tr>`).join('');
 }
 function render(){
+ $('#inputReadable').textContent=formatTokenCount($('#input').value);$('#outputReadable').textContent=formatTokenCount($('#output').value);
  if(!data)return;renderFxInfo();allPlatforms=new Set($('#fullCatalog').value.split(',').filter(Boolean));
  const q=$('#search').value.trim().toLowerCase(),provider=$('#provider').value,sort=$('#sort').value;
  const filtered=data.models.filter(r=>(!provider||r.provider===provider)&&eligible(r)&&JSON.stringify([r.model,r.platform,r.variant]).toLowerCase().includes(q));
