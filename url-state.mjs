@@ -1,5 +1,5 @@
-export const defaults={input:100000000,output:100000000,cache:90,fx:null,fxMode:'auto',currency:'CNY',search:'',provider:'',trust:'reliable',sort:'cost',tab:'prices',compareSearch:'',historyModel:'',historyRange:'30'};
-const choices={fxMode:['auto','manual'],currency:['USD','CNY'],trust:['reliable','official','community',''],sort:['cost','-cost','model','provider'],tab:['prices','compare','history','sources'],historyRange:['30','90','0']};
+export const defaults={input:100000000,output:100000000,cache:90,fx:null,fxMode:'auto',currency:'CNY',search:'',provider:'',trust:'reliable',sort:'recommended',openPlatforms:'bailian',openModels:'',fullCatalog:'',tab:'prices',compareSearch:'',historyModel:'',historyRange:'30'};
+const choices={fxMode:['auto','manual'],currency:['USD','CNY'],trust:['reliable','official','community',''],sort:['recommended','cost','-cost','model','provider'],tab:['prices','compare','history','sources'],historyRange:['30','90','0']};
 export function normalize(state={}){
  const result={...defaults};
  for(const key of Object.keys(result)){
