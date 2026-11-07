@@ -35,3 +35,60 @@ class OfficialPricingTest(unittest.TestCase):
   import json
   rs=deepinfra(json.dumps([dict(model_name='x/y',type='text-generation',pricing=dict(type='tokens',cents_per_input_token=.00002,cents_per_output_token=.00004,rate_per_input_token_cached=.1))]).encode())
   self.assertAlmostEqual(rs[0]['input'],.2);self.assertAlmostEqual(rs[0]['cache_read'],.02)
+
+class QualityTest(unittest.TestCase):
+ def quote(self,**kwargs):
+  from collect import row
+  return {**row('openai','test',2,8,.2),**kwargs}
+ def test_schema_zero_and_cache(self):
+  from quality import validate_batch
+  self.assertEqual(len(validate_batch([self.quote(cache_read=0)])),1)
+  for change in [dict(input=float('inf')),dict(output=-1),dict(input=None),dict(input=True),dict(currency='unknown')]:
+   with self.assertRaises(ValueError):validate_batch([self.quote(**change)])
+ def test_quarantine_large_changes_currency_and_conflicts(self):
+  from quality import validate_batch
+  before=self.quote()
+  for change in [dict(input=2000000),dict(input=0),dict(output=80),dict(currency='CNY')]:
+   with self.assertRaises(ValueError):validate_batch([self.quote(**change)],[before])
+  with self.assertRaises(ValueError):validate_batch([before,self.quote(input=3)])
+ def test_partial_parse_failure_count(self):
+  from quality import validate_batch
+  old=[self.quote(id=str(i)) for i in range(20)]
+  with self.assertRaises(ValueError):validate_batch(old[:5],old)
+ def test_bailian_identity_survives_real_price_changes(self):
+  tpl='<h2>千问</h2><h3>Plus</h3><h4>北京</h4><table><tr><th>模型</th><th>输入单价（每百万Token）</th><th>输出单价（每百万Token）</th></tr><tr><td>qwen-plus</td><td>{}元</td><td>8元</td></tr></table>'
+  self.assertEqual(bailian(tpl.format('1'))[0]['id'],bailian(tpl.format('2'))[0]['id'])
+ def test_ambiguous_price_cells_rejected(self):
+  from collect import official_tables
+  doc='<table><tr><th>Model</th><th>Input</th><th>Output</th></tr><tr><td>model</td><td>$1 $2 promotional</td><td>$8</td></tr></table>'
+  self.assertEqual(official_tables('openai',doc),[])
+
+class OfficialGoldenTest(unittest.TestCase):
+ def fixture(self,key):return (Path(__file__).parent/'fixtures'/(key+'.txt')).read_bytes()
+ def test_real_official_openai_prices(self):
+  from collect import official_tables
+  rows=official_tables('openai',self.fixture('openai'));r=next(r for r in rows if r['model']=='gpt-6-astra')
+  self.assertEqual((r['currency'],r['input'],r['output'],r['cache_read']),('USD',10,50,1))
+ def test_real_official_anthropic_prices(self):
+  from collect import official_tables
+  rows=official_tables('anthropic',self.fixture('anthropic'));r=next(r for r in rows if r['model']=='claude-fable-5-1')
+  self.assertEqual((r['input'],r['output'],r['cache_read']),(10,50,.25))
+ def test_real_official_deepseek_prices(self):
+  from collect import deepseek
+  rows=deepseek(self.fixture('deepseek'));r=next(r for r in rows if r['id']=='deepseek:deepseek-flash:PEAK')
+  self.assertEqual((r['input'],r['output'],r['cache_read']),(.3,1.2,.006))
+ def test_real_siliconflow_cny_and_time_periods(self):
+  from collect import siliconflow
+  rows=siliconflow(self.fixture('siliconflow'))
+  self.assertEqual(len(rows),2)
+  self.assertEqual((rows[0]['currency'],rows[0]['input'],rows[0]['output'],rows[0]['cache_read']),('CNY',2,8,.04))
+  self.assertEqual((rows[1]['input'],rows[1]['output'],rows[1]['cache_read']),(1,4,.02))
+
+class QuarantineTest(unittest.TestCase):
+ def test_only_changed_or_missing_quote_is_quarantined(self):
+  from collect import row
+  from quality import review_batch
+  a=row('openai','a',2,8,.2);b=row('openai','b',3,9,.3);c=row('openai','removed',4,10)
+  for r in [a,b,c]:r.update(observed_at='2026-11-06T00:00:00Z')
+  rows,warnings=review_batch([{**a,'input':200},b],[a,b,c])
+  self.assertEqual(len(warnings),2);self.assertEqual(rows[0]['input'],2);self.assertTrue(rows[0]['stale']);self.assertEqual(rows[0]['observed_at'],a['observed_at']);self.assertFalse(rows[1].get('stale',False));self.assertTrue(rows[2]['stale'])

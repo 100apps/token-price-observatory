@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: python -m unittest discover -s tests -v && node --test tests/calc.test.mjs
+      - run: python -m unittest discover -s tests -v && node --test tests/*.test.mjs
       - name: Collect daily snapshot
         if: github.event_name != 'push'
         run: python scripts/collect.py
@@ -41,7 +41,7 @@ jobs:
       - name: Stage static site
         run: |
           mkdir -p _site
-          cp index.html style.css app.js calc.mjs _site/
+          cp index.html style.css app.js *.mjs _site/
           cp -r data _site/data
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5

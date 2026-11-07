@@ -1,0 +1,26 @@
+[
+  {
+    "provider": "openai",
+    "url": "https://developers.openai.com/api/docs/pricing",
+    "fetched_at": "2026-11-07T04:18:28.035113+00:00",
+    "sha256": "f30a6e3d9674a896c8197e146e6682b6b120075e1e4b0c9d34d40a18cc686d07"
+  },
+  {
+    "provider": "anthropic",
+    "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "fetched_at": "2026-11-07T04:18:28.035113+00:00",
+    "sha256": "e04be722f2ed65d563f29c744cb1ee1e292777f7cea896a0bd2e3ba7128b0a60"
+  },
+  {
+    "provider": "deepseek",
+    "url": "https://api-docs.deepseek.com/quick_start/pricing.md",
+    "fetched_at": "2026-11-07T04:18:28.035113+00:00",
+    "sha256": "07e68850f45ff5afc35a10f03831673beb5667d9c31d2b386ddf6c465b9e7eaf"
+  },
+  {
+    "provider": "siliconflow",
+    "url": "https://siliconflow.cn/pricing",
+    "fetched_at": "2026-11-07T04:18:28.035113+00:00",
+    "sha256": "177691c9bd36699819e4f72bb9a650253e2e708646827f891051254be5192717"
+  }
+]

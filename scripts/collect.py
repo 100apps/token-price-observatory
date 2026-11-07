@@ -1,7 +1,8 @@
 """Public, keyless price collection. Never replace failed data with invented rates."""
-import concurrent.futures, datetime as dt, gzip, hashlib, json, re, time, urllib.request
+import argparse, concurrent.futures, datetime as dt, gzip, hashlib, json, re, time, urllib.request
 from pathlib import Path
 from lxml import html
+from quality import validate_batch, review_batch
 ROOT=Path(__file__).resolve().parents[1]
 SOURCES={
  'openrouter':'https://openrouter.ai/api/v1/models',
@@ -67,7 +68,10 @@ def bailian(body):
  doc=html.fromstring(body);result=[];seen=set()
  for ti,t in enumerate(doc.xpath('//table')):
   headings=t.xpath('preceding::*[self::h2 or self::h3 or self::h4]')
-  section=' / '.join(' '.join(h.text_content().split()) for h in headings[-3:])
+  stack={}
+  for h in headings:
+   level=int(h.tag[1]);stack={k:v for k,v in stack.items() if k<level};stack[level]=' '.join(h.text_content().split())
+  section=' / '.join(stack.values())
   g=grid(t)
   if not g:continue
   headers=g[0]
@@ -90,7 +94,7 @@ def bailian(body):
     if signature in seen:continue
     seen.add(signature)
     r=row('bailian',model[1],float(a[1]),float(b[1]),float(cache[1]) if cache else None)
-    r.update(currency='CNY',variant=conditions,id='bailian:'+hashlib.sha256(repr(signature).encode()).hexdigest()[:18],conditions=dict(section=section,headers=headers,cells=cells,output_mode=subheader),notes='地区、上下文阶梯与模式见本行条件；未解析缓存折扣时按普通输入计费。')
+    r.update(currency='CNY',variant=conditions,id='bailian:'+hashlib.sha256(repr(signature[:2]).encode()).hexdigest()[:18],conditions=dict(section=section,headers=headers,cells=cells,output_mode=subheader),notes='地区、上下文阶梯与模式见本行条件；未解析缓存折扣时按普通输入计费。')
     result.append(r)
  return result
 
@@ -126,7 +130,7 @@ def official_tables(provider,body):
   for cells in g[header_idx+1:]:
    if len(cells)<=max(ic,oc):continue
    def money(v):
-    m=re.match(r'^\$([\d.]+)(?:\s*/\s*MTok)?',v)
+    m=re.fullmatch(r'\$([\d.]+)(?:\s*/\s*MTok)?(?:for prompts (?:up to|over) [\d,]+ tokens)?',v)
     return float(m[1]) if m else None
    a,b=money(cells[ic]),money(cells[oc])
    if a is None or b is None:continue
@@ -206,7 +210,8 @@ def minimax(body):
    r=row('minimax',m[1],*rates);r.update(currency='CNY',conditions=cells);result.append(r)
  return result
 
-def main():
+def main(accepted=None):
+ accepted=accepted or {}
  now=dt.datetime.now(dt.timezone.utc);stamp=now.strftime('%Y-%m-%dT%H-%M-%S.%fZ');rawdir=ROOT/'data/raw'/stamp;rawdir.mkdir(parents=True)
  previous=json.loads((ROOT/'data/latest.json').read_text()) if (ROOT/'data/latest.json').exists() else {'models':[]}
  statuses=[];payloads={}
@@ -229,8 +234,15 @@ def main():
   status=next(s for s in statuses if s['provider']==key)
   try:
    if payloads[key] is None:raise ValueError(status.get('error','fetch failed'))
-   parsed=parser(payloads[key]);assert parsed,'No prices parsed'
-   for r in parsed:r.update(observed_at=now.isoformat(),stale=False)
+   parsed=parser(payloads[key])
+   baseline=[r for r in previous['models'] if (r['provenance']=='community' if key=='community' else r['provider']==key and r['provenance']=='official')]
+   if key in accepted:
+    if accepted[key]!=status['sha256']:raise ValueError('Reviewed source SHA-256 does not match current document')
+    baseline=[];status['reviewed_sha256']=accepted[key]
+   parsed,warnings=review_batch(parsed,baseline)
+   if warnings:status['warnings']=warnings
+   for r in parsed:
+    if not r.get('stale'):r.update(observed_at=now.isoformat(),stale=False,evidence=dict(raw=status['raw'],sha256=status['sha256'],url=status['url']))
    models+=parsed;status.update(status='parsed',count=len(parsed))
   except Exception as e:
    status.update(status='failed',error=str(e))
@@ -245,7 +257,7 @@ def main():
       evidence=next((s for s in past['sources'] if s['provider']==key and s.get('raw')),None)
       if not evidence:continue
       raw=ROOT/evidence['raw'];body=gzip.decompress(raw.read_bytes()) if raw.name.endswith('.gz') else raw.read_bytes()
-      old=parser(body)
+      old=validate_batch(parser(body))
       for r in old:r.update(observed_at=evidence['fetched_at'])
       if old:
        status.update(fallback_observed_at=evidence['fetched_at'],fallback_raw=evidence['raw']);break
@@ -255,7 +267,7 @@ def main():
  # An archived document is evidence, not a verified structured price.
  official_pairs={(r['provider'],r['canonical']) for r in models if r['provenance']=='official' and not r.get('stale')}
  models=[r for r in models if r['provenance']=='official' or (r['provider'],r['canonical']) not in official_pairs]
- unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.0.0',collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
+ unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.1.0',collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
  if not models:raise RuntimeError('No prices; latest left unchanged')
  history=ROOT/'data/history';history.mkdir(exist_ok=True)
  encoded=(json.dumps(snapshot,ensure_ascii=False,indent=2)+'\n').encode()
@@ -264,5 +276,14 @@ def main():
  index=sorted([p.name for p in history.iterdir() if p.name.endswith(('.json','.json.gz'))],reverse=True)
  (ROOT/'data/history/index.json').write_text(json.dumps([n for n in index if n!='index.json'],indent=2)+'\n')
  print(json.dumps({'models':len(unique),'sources':statuses},ensure_ascii=False))
- if any(s['status']=='failed' for s in statuses):print('::warning::Some sources failed; inspect data/latest.json sources')
-if __name__=='__main__':main()
+ if any(s['status']=='failed' or s.get('warnings') for s in statuses):print('::warning::Prices quarantined or sources failed; inspect data/latest.json sources')
+if __name__=='__main__':
+ cli=argparse.ArgumentParser()
+ cli.add_argument('--accept-source',action='append',default=[],metavar='PROVIDER=SHA256',help='After manual official-source review, accept only this exact document digest')
+ args=cli.parse_args()
+ accepted={}
+ for value in args.accept_source:
+  key,sep,digest=value.partition('=')
+  if not sep or key not in SOURCES or not re.fullmatch('[a-f0-9]{64}',digest):cli.error('Expected known PROVIDER=SHA256')
+  accepted[key]=digest
+ main(accepted)
