@@ -5,3 +5,6 @@ test('zero usage and currency round trip',()=>{assert.equal(calculate({input:2,o
 test('missing exchange rate cannot turn USD costs into free CNY prices',()=>{
  assert.ok(Number.isNaN(convert(100,'USD','CNY',null)));assert.ok(Number.isNaN(convert(100,'CNY','USD',0)));assert.equal(convert(100,'CNY','CNY',null),100);
 });
+test('unverified Bailian list prices are never computed as promotion prices',()=>{
+ assert.ok(Number.isNaN(calculate({input:1,output:2,cache_read:.1,calculation_blocked:true},1e8,1e8,.9)));
+});

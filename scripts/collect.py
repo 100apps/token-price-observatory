@@ -4,10 +4,12 @@ from pathlib import Path
 from lxml import html
 from quality import validate_batch, review_batch
 import exchange
+import bailian_market
 ROOT=Path(__file__).resolve().parents[1]
 SOURCES={
  'openrouter':'https://openrouter.ai/api/v1/models',
- 'bailian':'https://help.aliyun.com/zh/model-studio/model-pricing',
+ 'bailian':bailian_market.MARKET,
+ 'bailian_list':'https://help.aliyun.com/zh/model-studio/model-pricing',
  'community':'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json',
  'openai':'https://developers.openai.com/api/docs/pricing',
  'anthropic':'https://platform.claude.com/docs/en/about-claude/pricing',
@@ -250,9 +252,9 @@ def main(accepted=None):
   key,url=item
   for attempt in range(3):
    try:
-    req=urllib.request.Request(url,headers={'User-Agent':'TokenPriceObservatory/1.0 (+https://github.com/100apps/token-price-observatory)'})
+    req=bailian_market.request() if key=='bailian' else urllib.request.Request(url,headers={'User-Agent':'TokenPriceObservatory/1.0 (+https://github.com/100apps/token-price-observatory)'})
     with urllib.request.urlopen(req,timeout=45) as r:body=r.read();final=r.url
-    ext='json' if key in ['openrouter','community','deepinfra'] else 'md' if key=='deepseek' else 'html';digest=hashlib.sha256(body).hexdigest();path=ROOT/'data/raw'/digest[:2]/(digest+'.'+ext+'.gz');path.parent.mkdir(parents=True,exist_ok=True)
+    ext='json' if key in ['openrouter','community','deepinfra','bailian'] else 'md' if key=='deepseek' else 'html';digest=hashlib.sha256(body).hexdigest();path=ROOT/'data/raw'/digest[:2]/(digest+'.'+ext+'.gz');path.parent.mkdir(parents=True,exist_ok=True)
     if not path.exists():path.write_bytes(gzip.compress(body,mtime=0))
     return key,body,dict(provider=key,url=url,final_url=final,status='archived',sha256=hashlib.sha256(body).hexdigest(),raw=str(path.relative_to(ROOT)),fetched_at=now.isoformat())
    except Exception as e:
@@ -261,7 +263,7 @@ def main(accepted=None):
  with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
   for key,body,status in pool.map(fetch,SOURCES.items()):statuses.append(status);payloads[key]=body
  models=[]
- for key,parser in [('openrouter',lambda b:openrouter(json.loads(b))),('bailian',bailian),('siliconflow',siliconflow),('minimax',minimax),('deepseek',deepseek),('deepinfra',deepinfra),('openai',lambda b:official_tables('openai',b)),('anthropic',lambda b:official_tables('anthropic',b)),('community',lambda b:community(json.loads(b)))]:
+ for key,parser in [('openrouter',lambda b:openrouter(json.loads(b))),('bailian',bailian_market.parse),('siliconflow',siliconflow),('minimax',minimax),('deepseek',deepseek),('deepinfra',deepinfra),('openai',lambda b:official_tables('openai',b)),('anthropic',lambda b:official_tables('anthropic',b)),('community',lambda b:community(json.loads(b)))]:
   status=next(s for s in statuses if s['provider']==key)
   try:
    if payloads[key] is None:raise ValueError(status.get('error','fetch failed'))
@@ -295,10 +297,13 @@ def main(accepted=None):
      except Exception:continue
    for r in old:r['stale']=True
    models+=old
+ # Market promotions must be verified independently; never revive old list-price rows.
+ for r in models:
+  if r['provider']=='bailian':r.update(calculation_blocked=True,pricing_basis='unverified_list_price',quality_issue='百炼活动价未核验；文档标价不参与计算或比较',market_source=bailian_market.MARKET)
  # An archived document is evidence, not a verified structured price.
  official_pairs={(r['provider'],r['canonical']) for r in models if r['provenance']=='official' and not r.get('stale')}
  models=[r for r in models if r['provenance']=='official' or (r['provider'],r['canonical']) not in official_pairs]
- unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.3.0',exchange_rate=exchange_rate,collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
+ unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.5.0',exchange_rate=exchange_rate,collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
  saved=save_result(snapshot,stamp,previous_health)
  print(json.dumps({'models':len(unique),'sources':statuses},ensure_ascii=False))
  if any(s['status']=='failed' or s.get('warnings') for s in statuses):print('::warning::Prices quarantined or sources failed; inspect data/health.json')

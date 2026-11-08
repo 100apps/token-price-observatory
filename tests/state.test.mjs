@@ -14,3 +14,6 @@ test('fresh official only; old, failed, community and future timestamps excluded
 test('new visits default to CNY and automatic FX; old explicit rates stay manual',()=>{
  assert.equal(readState('https://example.com/').currency,'CNY');assert.equal(readState('https://example.com/').fxMode,'auto');assert.equal(readState('https://example.com/?fx=7.1').fxMode,'manual');assert.equal(readState('https://example.com/?fx=7.1&fxMode=auto').fxMode,'auto');
 });
+test('blocked official prices never qualify as reliable',()=>{
+ assert.equal(isReliable({provenance:'official',stale:false,observed_at:new Date().toISOString(),calculation_blocked:true}),false);
+});
