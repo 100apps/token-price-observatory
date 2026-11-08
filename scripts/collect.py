@@ -1,6 +1,7 @@
 """Public, keyless price collection. Never replace failed data with invented rates."""
 import argparse, concurrent.futures, datetime as dt, gzip, hashlib, json, re, time, urllib.request
 from pathlib import Path
+from decimal import Decimal
 from lxml import html
 from quality import validate_batch, review_batch
 import exchange
@@ -37,6 +38,12 @@ def number(v):
   return n if 0<=n<1e12 else None
  except (ValueError,TypeError):return None
 
+def scale_price(value,*factors):
+ # Source currency is unchanged; only the token quantity unit is normalized.
+ n=Decimal(str(value))
+ for factor in factors:n*=Decimal(str(factor))
+ return float(n)
+
 def canonical(s):
  # Exact version identifiers only; do not conflate aliases or differently quantized models.
  return s.lower().split('/')[-1].replace('anthropic.','').replace('meta-llama.','')
@@ -50,7 +57,7 @@ def openrouter(data):
   if 'text' not in m.get('architecture',{}).get('output_modalities',['text']):continue
   p=m.get('pricing',{});a,b=number(p.get('prompt')),number(p.get('completion'))
   if a is None or b is None:continue
-  r=row('openrouter',m['id'],a*1e6,b*1e6, None if number(p.get('input_cache_read')) is None else float(p['input_cache_read'])*1e6)
+  r=row('openrouter',m['id'],scale_price(a,1000000),scale_price(b,1000000), None if number(p.get('input_cache_read')) is None else scale_price(p['input_cache_read'],1000000))
   r.update(context=m.get('context_length'),name=m.get('name'),conditions={k:v for k,v in p.items() if k not in ['prompt','completion','input_cache_read']},source='https://openrouter.ai/'+m['id']);result.append(r)
  return result
 
@@ -110,7 +117,7 @@ def community(data):
   if p.get('deprecation_date','9999') < dt.date.today().isoformat():continue
   a,b=number(p.get('input_cost_per_token')),number(p.get('output_cost_per_token'))
   if a is None or b is None:continue
-  r=row(provider,model,a*1e6,b*1e6, None if number(p.get('cache_read_input_token_cost')) is None else p['cache_read_input_token_cost']*1e6)
+  r=row(provider,model,scale_price(a,1000000),scale_price(b,1000000), None if number(p.get('cache_read_input_token_cost')) is None else scale_price(p['cache_read_input_token_cost'],1000000))
   r.update(provenance='community',catalog=SOURCES['community'],source=p.get('source') if str(p.get('source','')).startswith('https://') else SOURCES[provider],conditions={k:v for k,v in p.items() if any(s in k for s in ['cost','pricing','region'])},notes='社区目录报价，官方页面已另行归档，未逐项自动核验。阶梯/Batch/Flex/优先级等条件见详情，不自动套用。',context=p.get('max_input_tokens'));result.append(r)
  return result
 
@@ -177,7 +184,7 @@ def deepinfra(body):
   if a is None or b is None:continue
   # This API reports cents per token. Cached rate is a multiplier, not cents.
   cache_rate=number(p.get('rate_per_input_token_cached'))
-  r=row('deepinfra',m['model_name'],a*10000,b*10000,None if cache_rate is None else a*10000*cache_rate)
+  r=row('deepinfra',m['model_name'],scale_price(a,10000),scale_price(b,10000),None if cache_rate is None else scale_price(a,10000,cache_rate))
   r.update(source='https://deepinfra.com/'+m['model_name'],conditions=p,context=m.get('max_tokens'),notes='按官方模型 API 的美分/token换算为美元/百万 token；量化：'+str(m.get('quantization')));result.append(r)
  return result
 

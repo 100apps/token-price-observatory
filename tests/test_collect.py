@@ -92,3 +92,15 @@ class QuarantineTest(unittest.TestCase):
   for r in [a,b,c]:r.update(observed_at='2026-11-06T00:00:00Z')
   rows,warnings=review_batch([{**a,'input':200},b],[a,b,c])
   self.assertEqual(len(warnings),2);self.assertEqual(rows[0]['input'],2);self.assertTrue(rows[0]['stale']);self.assertEqual(rows[0]['observed_at'],a['observed_at']);self.assertFalse(rows[1].get('stale',False));self.assertTrue(rows[2]['stale'])
+
+
+class DecimalScalingTest(unittest.TestCase):
+ def test_normalization_preserves_source_currency_and_exact_decimal_rate(self):
+  from collect import openrouter,community,deepinfra
+  import json
+  rs=openrouter({'data':[{'id':'test','pricing':{'prompt':'0.0000004','completion':'0.00000219','input_cache_read':'0.000000044'}}]})
+  self.assertEqual((rs[0]['currency'],rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),('USD',.4,2.19,.044))
+  rs=community({'deepseek/test':{'mode':'chat','litellm_provider':'deepseek','input_cost_per_token':4e-7,'output_cost_per_token':2.19e-6,'cache_read_input_token_cost':4.4e-8}})
+  self.assertEqual((rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),(.4,2.19,.044))
+  rs=deepinfra(json.dumps([dict(model_name='test',type='text-generation',pricing=dict(type='tokens',cents_per_input_token=.00002,cents_per_output_token=.00004,rate_per_input_token_cached=.1))]).encode())
+  self.assertEqual((rs[0]['currency'],rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),('USD',.2,.4,.02))

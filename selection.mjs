@@ -12,10 +12,7 @@ export function regularRank(r){
  return rank;
 }
 export function chooseQuote(rows,id){return rows.find(r=>r.id===id)||rows.slice().sort((a,b)=>regularRank(a)-regularRank(b)||a.id.localeCompare(b.id))[0]}
-export function costParts(r,input,output,hit){
- const cached=r.cache_supported===false?0:input*hit;
- return{uncached:(input-cached)*r.input/1e6,cached:cached*(r.cache_read??r.input)/1e6,output:output*r.output/1e6};
-}
+export{costParts}from'./calc.mjs';
 
 // Sort a copy: URL selection order remains stable when usage or FX changes.
 export function rankQuotes(rows,cost){return rows.slice().sort((a,b)=>{
