@@ -23,7 +23,7 @@
 | --- | --- | --- |
 | OpenRouter | 官方 `/api/v1/models` | 官方输入、输出、缓存 token 价及全量文本输出模型 |
 | 阿里云百炼 | 官方 CLI 匿名市场网关 `bailian-cs.console.aliyun.com/cli/api.json` | 市场目录与已核验活动规则；按地区、上下文、模式和时段拆行；详见 v1.7 |
-| DeepSeek | 官方 `quick_start/pricing.md` | 官方忙时/闲时、输入缓存命中/未命中和输出价；保留官方 UTC 时段、周末和中国法定节假日条件 |
+| DeepSeek | 中文官方 `zh-cn/quick_start/pricing.md` | 原始人民币忙时/闲时、缓存命中/未命中和输出价；保留北京时间及节假日条件 |
 | OpenAI | 官方 API pricing | 官方文本价格表，区分 Standard、Batch、Fast 等服务等级；缓存写入价格保留详情 |
 | Anthropic | Claude 官方 pricing | 官方文本和缓存读取表；上下文限制、缓存写入保留详情 |
 | DeepInfra | 官方公开模型目录 API | 可用文本生成模型和 token 计费；美分/token 转美元/百万 token |
@@ -238,3 +238,10 @@ bl model list --model deepseek-v4-pro --output json
 总价和普通输入/输出/缓存命中费用按“费用显示币种”展示：先用原币单价计算，再在 USD/CNY 不同时单次换算；同币种直接返回原值，即使汇率不可用也可计算。跨币种总价下同时显示原币总价及参考汇率。计算与费用拆分共用函数，明确不支持缓存的模式始终忽略命中率；未知币种拒绝换算。
 
 本次按归档证据重新解析并比对 8 个官方结构化来源的 863 条近期报价，无单价或币种不匹配；另读取 DeepSeek 最新官方价格表确认其 USD 报价。这个结果验证了已解析报价与来源的一致性，不将社区目录升级为官方核验，也不代替账户实际结算规则。
+
+
+## DeepSeek 中文人民币报价（v2.4）
+
+DeepSeek 官方直采固定使用 [中文价格表](https://api-docs.deepseek.com/zh-cn/quick_start/pricing.md)，要求表中明确的“元”价格和百万 tokens 单位，保存原币 CNY；不使用英文 USD 价或汇率反推人民币。北京时间忙时、闲时以及周末和法定节假日规则原文保存。中文表缺失币种、返回英文或解析失败时拒收，保留此前人民币报价并提示旧数据。
+
+人民币报价使用独立 `deepseek:cn:<model>:<period>` ID。此前英文美元报价保留在不可改写的历史快照中，不混入同一条价格趋势，不作为中文报价的价格变动基线。其他平台转售 DeepSeek 模型仍使用该平台自身报价和币种。

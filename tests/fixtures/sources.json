@@ -13,9 +13,9 @@
   },
   {
     "provider": "deepseek",
-    "url": "https://api-docs.deepseek.com/quick_start/pricing.md",
-    "fetched_at": "2026-11-07T04:18:28.035113+00:00",
-    "sha256": "07e68850f45ff5afc35a10f03831673beb5667d9c31d2b386ddf6c465b9e7eaf"
+    "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing.md",
+    "fetched_at": "2026-11-08T11:27:08.261553+00:00",
+    "sha256": "d2b347bd6b0b432ac3453399cb545acf10e731016f91941f25efe3209509be1f"
   },
   {
     "provider": "siliconflow",

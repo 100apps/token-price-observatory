@@ -15,7 +15,7 @@ SOURCES={
  'openai':'https://developers.openai.com/api/docs/pricing',
  'anthropic':'https://platform.claude.com/docs/en/about-claude/pricing',
  'gemini':'https://ai.google.dev/gemini-api/docs/pricing',
- 'deepseek':'https://api-docs.deepseek.com/quick_start/pricing.md',
+ 'deepseek':'https://api-docs.deepseek.com/zh-cn/quick_start/pricing.md',
  'moonshot':'https://platform.moonshot.cn/docs/pricing/chat',
  'zhipu':'https://docs.bigmodel.cn/cn/guide/models/text',
  'zai':'https://docs.z.ai/guides/overview/pricing',
@@ -158,21 +158,24 @@ def official_tables(provider,body):
 
 def deepseek(body):
  text=body.decode();lines=[[c.strip() for c in l.strip().strip('|').split('|')] for l in text.splitlines() if l.strip().startswith('|')]
- header=next((l for l in lines if l[0]=='MODEL'),None)
+ header=next((l for l in lines if l[0]=='模型'),None)
  if not header:return []
  result=[]
  rule=' '.join(l for l in text.splitlines() if l.startswith('(2)'))
  for col in range(3,len(header)):
   model=re.sub(r'\(\d+\)','',header[col]).strip()
-  for period in ['OFF-PEAK','PEAK']:
+  if not model.startswith('deepseek-'):continue
+  for band,period in [('空闲时段','OFF-PEAK'),('高峰时段','PEAK')]:
    prices={}
    for l in lines:
-    if len(l)<=col or l[0]!='PRICING(2)' or l[2]!=period:continue
-    m=re.fullmatch(r'\$([\d.]+)',l[col])
+    if len(l)<=col or l[0]!='价格(2)' or l[2]!=band:continue
+    m=re.fullmatch(r'([\d.]+)元',l[col])
     if m:prices[l[1]]=float(m[1])
-   if len(prices)!=3:continue
-   a=next(v for k,v in prices.items() if 'MISS' in k);b=next(v for k,v in prices.items() if 'OUTPUT' in k);cache=next(v for k,v in prices.items() if 'HIT' in k)
-   r=row('deepseek',model,a,b,cache);r.update(id='deepseek:'+model+':'+period,variant='闲时 OFF-PEAK' if period=='OFF-PEAK' else '忙时 PEAK',conditions=dict(period=period,schedule=rule),notes=rule);result.append(r)
+   a=next((v for k,v in prices.items() if '百万tokens输入' in k and '缓存未命中' in k),None)
+   cache=next((v for k,v in prices.items() if '百万tokens输入' in k and '缓存命中' in k and '未命中' not in k),None)
+   b=next((v for k,v in prices.items() if k=='百万tokens输出'),None)
+   if any(v is None for v in [a,b,cache]):continue
+   r=row('deepseek',model,a,b,cache);r.update(currency='CNY',id='deepseek:cn:'+model+':'+period,variant='闲时 OFF-PEAK' if period=='OFF-PEAK' else '忙时 PEAK',conditions=dict(period=period,schedule=rule,locale='zh-cn',timezone='Asia/Shanghai'),notes=rule);result.append(r)
  return result
 
 def deepinfra(body):
@@ -278,6 +281,8 @@ def main(accepted=None):
    if payloads[key] is None:raise ValueError(status.get('error','fetch failed'))
    parsed=parser(payloads[key])
    baseline=[r for r in previous['models'] if (r['provenance']=='community' if key=='community' else r['provider']==key and r['provenance']=='official')]
+   # Chinese CNY quotes are a distinct billing catalogue; old USD history is retained.
+   if key=='deepseek':baseline=[r for r in baseline if r['currency']=='CNY' and r['id'].startswith('deepseek:cn:')]
    if key=='bailian':baseline=[r for r in baseline if r.get('pricing_basis')=='market_catalog']
    if key in accepted:
     if accepted[key]!=status['sha256']:raise ValueError('Reviewed source SHA-256 does not match current document')

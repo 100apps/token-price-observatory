@@ -19,14 +19,10 @@ if __name__=='__main__':unittest.main()
 class OfficialPricingTest(unittest.TestCase):
  def test_peak_offpeak_not_merged(self):
   from collect import deepseek
-  body=b'''| MODEL | MODEL | MODEL | deepseek-flash(1) | deepseek-v4-pro |
-| PRICING(2) | 1M INPUT TOKENS / (CACHE HIT) | OFF-PEAK | $0.003 | $0.022 |
-| PRICING(2) | 1M INPUT TOKENS / (CACHE MISS) | OFF-PEAK | $0.15 | $0.66 |
-| PRICING(2) | 1M OUTPUT TOKENS | OFF-PEAK | $0.6 | $1.98 |
-| PRICING(2) | 1M INPUT TOKENS / (CACHE HIT) | PEAK | $0.006 | $0.044 |
-| PRICING(2) | 1M INPUT TOKENS / (CACHE MISS) | PEAK | $0.3 | $1.32 |
-| PRICING(2) | 1M OUTPUT TOKENS | PEAK | $1.2 | $3.96 |'''
-  rs=deepseek(body);self.assertEqual(len(rs),4);self.assertEqual(rs[0]['input'],.15);self.assertEqual(rs[1]['input'],.3);self.assertEqual(rs[0]['cache_read'],.003)
+  body=Path(__file__).with_name('fixtures').joinpath('deepseek.txt').read_bytes()
+  rs=deepseek(body);self.assertEqual(len(rs),4);self.assertEqual(rs[0]['input'],1);self.assertEqual(rs[1]['input'],2);self.assertEqual(rs[0]['cache_read'],.02)
+  self.assertTrue(all(r['currency']=='CNY' for r in rs));self.assertIn('北京时间',rs[0]['conditions']['schedule'])
+
  def test_bailian_thinking_modes_and_region(self):
   body='''<h2>千问</h2><h4>北京</h4><table><tr><th rowspan="2">模型 ID</th><th rowspan="2">输入单价（每百万Token）</th><th colspan="2">输出单价（每百万Token）</th></tr><tr><th>非思考模式</th><th>思考模式</th></tr><tr><td>qwen-plus</td><td>0.8元</td><td>2元</td><td>8元</td></tr></table>'''
   rs=bailian(body);self.assertEqual(len(rs),2);self.assertEqual([r['output'] for r in rs],[2,8]);self.assertIn('北京',rs[0]['variant']);self.assertNotEqual(rs[0]['id'],rs[1]['id'])
@@ -75,8 +71,9 @@ class OfficialGoldenTest(unittest.TestCase):
   self.assertEqual((r['input'],r['output'],r['cache_read']),(10,50,.25))
  def test_real_official_deepseek_prices(self):
   from collect import deepseek
-  rows=deepseek(self.fixture('deepseek'));r=next(r for r in rows if r['id']=='deepseek:deepseek-flash:PEAK')
-  self.assertEqual((r['input'],r['output'],r['cache_read']),(.3,1.2,.006))
+  rows=deepseek(self.fixture('deepseek'));r=next(r for r in rows if r['id']=='deepseek:cn:deepseek-flash:PEAK')
+  self.assertEqual((r['currency'],r['input'],r['output'],r['cache_read']),('CNY',2,8,.04))
+  r=next(r for r in rows if r['id']=='deepseek:cn:deepseek-v4-pro:PEAK');self.assertEqual((r['input'],r['output'],r['cache_read']),(9,27,.30))
  def test_real_siliconflow_cny_and_time_periods(self):
   from collect import siliconflow
   rows=siliconflow(self.fixture('siliconflow'))
@@ -104,3 +101,14 @@ class DecimalScalingTest(unittest.TestCase):
   self.assertEqual((rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),(.4,2.19,.044))
   rs=deepinfra(json.dumps([dict(model_name='test',type='text-generation',pricing=dict(type='tokens',cents_per_input_token=.00002,cents_per_output_token=.00004,rate_per_input_token_cached=.1))]).encode())
   self.assertEqual((rs[0]['currency'],rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),('USD',.2,.4,.02))
+
+
+class DeepSeekChineseCurrencyTest(unittest.TestCase):
+ def test_reject_usd_and_missing_currency_in_chinese_catalogue(self):
+  from collect import deepseek
+  body=Path(__file__).with_name('fixtures').joinpath('deepseek.txt').read_text()
+  import re
+  altered=re.sub(r'([0-9.]+)元',r'$\1',body)
+  self.assertEqual(deepseek(altered.encode()),[])
+  altered=body.replace('元','')
+  self.assertEqual(deepseek(altered.encode()),[])
