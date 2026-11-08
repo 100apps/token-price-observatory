@@ -1,3 +1,5 @@
-import{test}from'node:test';import assert from'node:assert/strict';import{chooseQuote,costParts}from'../selection.mjs';
+import{test}from'node:test';import assert from'node:assert/strict';import{chooseQuote,costParts,rankQuotes}from'../selection.mjs';
 test('regular quote is preferred instead of hidden cheapest batch/offpeak conditions',()=>{const rows=[{id:'a',variant:'Batch File',input:.1},{id:'b',variant:'闲时 OFF-PEAK',input:.2},{id:'c',variant:'standard',input:10}];assert.equal(chooseQuote(rows).id,'c');assert.equal(chooseQuote(rows,'a').id,'a')});
 test('batch ignores cache allocation; unknown read cost remains conservative',()=>{const p=costParts({input:2,output:4,cache_supported:false},1e6,1e6,.9);assert.deepEqual(p,{uncached:2,cached:0,output:4});const q=costParts({input:2,output:4},1e6,1e6,.9);assert.equal(q.uncached+q.cached+q.output,6)});
+
+test('rank total costs numerically with stable ties, unavailable costs last, without mutating selection',()=>{const rs=[{id:'c',cost:100},{id:'b',cost:9},{id:'a',cost:9},{id:'d',cost:NaN}];assert.deepEqual(rankQuotes(rs,r=>r.cost).map(r=>r.id),['a','b','c','d']);assert.equal(rs[0].id,'c');assert.deepEqual(rankQuotes(rs,r=>r.id==='c'?0:r.cost).map(r=>r.id),['c','a','b','d'])});

@@ -16,3 +16,9 @@ export function costParts(r,input,output,hit){
  const cached=r.cache_supported===false?0:input*hit;
  return{uncached:(input-cached)*r.input/1e6,cached:cached*(r.cache_read??r.input)/1e6,output:output*r.output/1e6};
 }
+
+// Sort a copy: URL selection order remains stable when usage or FX changes.
+export function rankQuotes(rows,cost){return rows.slice().sort((a,b)=>{
+ const av=cost(a),bv=cost(b),x=Number.isFinite(av)?av:Infinity,y=Number.isFinite(bv)?bv:Infinity;
+ return x===y?a.id.localeCompare(b.id):x-y;
+})}
