@@ -3,7 +3,7 @@ import gzip,json,math
 from pathlib import Path
 
 def validate(root):
- for f in ['assets/silkscreen.ttf','index.html','style.css','app.js','calc.mjs','quality.mjs','url-state.mjs','catalog.mjs','data/latest.json','data/fx/latest.json','data/health.json','data/history/index.json']:
+ for f in ['assets/silkscreen.ttf','index.html','style.css','app.js','calc.mjs','quality.mjs','url-state.mjs','catalog.mjs','selection.mjs','data/latest.json','data/fx/latest.json','data/health.json','data/history/index.json']:
   if not (root/f).is_file():raise ValueError('Missing deploy file: '+f)
  current=json.loads((root/'data/latest.json').read_text())
  if not current.get('models'):raise ValueError('No current prices')

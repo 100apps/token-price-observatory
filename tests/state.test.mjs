@@ -1,6 +1,6 @@
 import{test}from'node:test';import assert from'node:assert/strict';import{defaults,readState,writeState}from'../url-state.mjs';import{isReliable}from'../quality.mjs';
 test('share URL round trip including zero usage, 0% cache, currency and Chinese search',()=>{
- const state={...defaults,input:0,output:1234567,cache:0,fx:7.01,currency:'CNY',search:'千问 & 思考',provider:'bailian',sort:'-cost',tab:'compare',compareSearch:'qwen-plus',historyModel:'a:b | x'};
+ const state={...defaults,input:0,output:1234567,cache:0,fx:7.01,currency:'CNY',search:'千问 & 思考',provider:'bailian',sort:'-cost',tab:'compare',compareSearch:'qwen-plus',historyModel:'a:b | x',quotes:JSON.stringify({'bailian|qwen-plus':'北京 | Batch Chat'}),pinned:JSON.stringify(['quote-a','quote-b'])};
  const url=writeState('https://example.com/repo/?tracking=keep',state);assert.deepEqual(readState(url),state);assert.equal(new URL(url).searchParams.get('tracking'),'keep');
 });
 test('empty, nonfinite, negative and malformed URL parameters use valid defaults',()=>{

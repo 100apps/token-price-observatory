@@ -1,0 +1,3 @@
+import{test}from'node:test';import assert from'node:assert/strict';import{chooseQuote,costParts}from'../selection.mjs';
+test('regular quote is preferred instead of hidden cheapest batch/offpeak conditions',()=>{const rows=[{id:'a',variant:'Batch File',input:.1},{id:'b',variant:'闲时 OFF-PEAK',input:.2},{id:'c',variant:'standard',input:10}];assert.equal(chooseQuote(rows).id,'c');assert.equal(chooseQuote(rows,'a').id,'a')});
+test('batch ignores cache allocation; unknown read cost remains conservative',()=>{const p=costParts({input:2,output:4,cache_supported:false},1e6,1e6,.9);assert.deepEqual(p,{uncached:2,cached:0,output:4});const q=costParts({input:2,output:4},1e6,1e6,.9);assert.equal(q.uncached+q.cached+q.output,6)});
