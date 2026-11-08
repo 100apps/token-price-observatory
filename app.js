@@ -45,7 +45,11 @@ function render(){
  if((!provider||provider==='bailian')&&!q)$('#platforms').insertAdjacentHTML('afterbegin',`<article class="platform-card market-unverified"><h2>阿里云百炼</h2><p>活动价待核验，暂不计算费用或参与最低价比较。</p><p class="hint">百炼市场接口要求登录；文档原价不能代表活动后的实付价。优惠资格、适用模型及有效期需在控制台核对。</p><a href="https://bailian.console.aliyun.com/cn-beijing/model/market" target="_blank" rel="noopener">进入百炼模型市场 ↗</a></article>`);
  $('#count').textContent=`${entries.length} 个平台 · ${displayed} 个模型入口 · 主流模型前 3 项默认展开，其余按需查看 · ${settings().currency}`;
  document.querySelectorAll('[data-platform]').forEach(el=>el.addEventListener('toggle',()=>{if(!el.isConnected)return;const state=new Set($('#openPlatforms').value.split(',').filter(Boolean));el.open?state.add(el.dataset.platform):state.delete(el.dataset.platform);$('#openPlatforms').value=[...state].join(',');syncURL()}));
- document.querySelectorAll('[data-model]').forEach(el=>el.addEventListener('toggle',()=>{if(!el.isConnected)return;const key=el.dataset.model,opens=new Set($('#openModels').value.split(',').filter(Boolean)),closes=new Set($('#closedModels').value.split(',').filter(Boolean));if(el.open){opens.add(key);closes.delete(key)}else{opens.delete(key);closes.add(key)}$('#openModels').value=[...opens].join(',');$('#closedModels').value=[...closes].join(',');syncURL()}));
+ document.querySelectorAll('[data-model]').forEach(el=>{
+  const record=open=>{if(!el.isConnected)return;const key=el.dataset.model,opens=new Set($('#openModels').value.split(',').filter(Boolean)),closes=new Set($('#closedModels').value.split(',').filter(Boolean));if(open){opens.add(key);closes.delete(key)}else{opens.delete(key);closes.add(key)}$('#openModels').value=[...opens].join(',');$('#closedModels').value=[...closes].join(',');syncURL()};
+  el.querySelector(':scope > summary').addEventListener('click',()=>record(!el.open));
+  el.addEventListener('toggle',()=>record(el.open));
+ });
  document.querySelectorAll('[data-quotes]').forEach(b=>b.onclick=()=>{const key=b.dataset.quotes;quoteExpanded.has(key)?quoteExpanded.delete(key):quoteExpanded.add(key);render()});
  document.querySelectorAll('[data-platform-more]').forEach(b=>b.onclick=()=>{platformLimits.set(b.dataset.platformMore,(platformLimits.get(b.dataset.platformMore)||6)+6);render()});
  document.querySelectorAll('[data-platform-all]').forEach(b=>b.onclick=()=>{const id=b.dataset.platformAll;allPlatforms.has(id)?allPlatforms.delete(id):allPlatforms.add(id);$('#fullCatalog').value=[...allPlatforms].join(',');platformLimits.set(id,6);render()});
@@ -69,7 +73,7 @@ async function refreshHealth(){
   const response=await fetch('data/health.json',{cache:'no-store'});if(!response.ok)throw Error(response.status);
   healthSnapshot=await response.json();const h=healthSnapshot;
   const when=h.last_success_at?new Date(h.last_success_at).toLocaleString('zh-CN',{timeZone:'UTC'})+' UTC':'暂无成功记录';
-  $('#health').textContent=h.status!=='failed'&&Date.now()-Date.parse(h.last_success_at)>48*3600000?`⚠ 已超过 48 小时未成功更新，请检查定时任务。最后成功：${when}`:h.status==='failed'?`⚠ 最近更新失败，当前仍是上次可用报价。最后成功：${when}。将在备用任务中重试。`:h.failed_sources?.length?`⚠ 部分来源更新失败（${h.failed_sources.join('、')}），已保留对应旧报价。最后成功：${when}`:h.review_warnings?`⚠ ${h.review_warnings} 条报价待复核，异常数据不参与默认排名。最后成功：${when}`:`✓ 每日更新正常 · 最后成功：${when}`;
+  $('#health').textContent=h.status!=='failed'&&Date.now()-Date.parse(h.last_success_at)>48*3600000?`⚠ 已超过 48 小时未成功更新，请检查定时任务。最后成功：${when}`:h.status==='failed'?`⚠ 最近更新失败，当前仍是上次可用报价。最后成功：${when}。将在备用任务中重试。`:h.failed_sources?.length?`⚠ 部分来源更新失败（${h.failed_sources.join('、')}），${h.failed_sources.includes('bailian')?'百炼活动价未核验，已停止计算；其他来源按各自状态展示。':'已保留对应旧报价。'}最后成功：${when}`:h.review_warnings?`⚠ ${h.review_warnings} 条报价待复核，异常数据不参与默认排名。最后成功：${when}`:`✓ 每日更新正常 · 最后成功：${when}`;
   renderSources();
  }catch{$('#health').textContent='⚠ 暂时无法读取更新健康状态，请核对快照时间。'}
 }
