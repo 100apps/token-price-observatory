@@ -11,7 +11,7 @@ export function regularRank(r){
  if(match)rank+=5;
  return rank;
 }
-export function chooseQuote(rows,id){return rows.find(r=>r.id===id)||rows.slice().sort((a,b)=>regularRank(a)-regularRank(b)||a.id.localeCompare(b.id))[0]}
+export function chooseQuote(rows,id){const explicit=rows.find(r=>r.id===id);if(explicit)return explicit;const domestic=rows.filter(r=>r.pricing_market==='cn');return (domestic.length?domestic:rows).slice().sort((a,b)=>regularRank(a)-regularRank(b)||a.id.localeCompare(b.id))[0]}
 export{costParts}from'./calc.mjs';
 
 // Sort a copy: URL selection order remains stable when usage or FX changes.

@@ -6,6 +6,7 @@ from lxml import html
 from quality import validate_batch, review_batch
 import exchange
 import bailian_market
+import domestic
 ROOT=Path(__file__).resolve().parents[1]
 SOURCES={
  'openrouter':'https://openrouter.ai/api/v1/models',
@@ -16,13 +17,12 @@ SOURCES={
  'anthropic':'https://platform.claude.com/docs/en/about-claude/pricing',
  'gemini':'https://ai.google.dev/gemini-api/docs/pricing',
  'deepseek':'https://api-docs.deepseek.com/zh-cn/quick_start/pricing.md',
- 'moonshot':'https://platform.moonshot.cn/docs/pricing/chat',
- 'zhipu':'https://docs.bigmodel.cn/cn/guide/models/text',
- 'zai':'https://docs.z.ai/guides/overview/pricing',
+ 'moonshot':domestic.KIMI,
+ 'zhipu':domestic.ZHIPU,
  'volcengine':'https://www.volcengine.com/docs/82379/1544106',
  'siliconflow':'https://siliconflow.cn/pricing',
  'tencent':'https://cloud.tencent.com/document/product/1729/97731',
- 'minimax':'https://platform.minimaxi.com/docs/guides/pricing-paygo',
+ 'minimax':'https://platform.minimax.cn/docs/pricing/overview',
  'mistral':'https://mistral.ai/pricing',
  'xai':'https://docs.x.ai/docs/models',
  'together_ai':'https://www.together.ai/pricing',
@@ -113,7 +113,7 @@ def community(data):
  for model,p in data.items():
   if not isinstance(p,dict) or p.get('mode') not in ['chat','completion']:continue
   provider=p.get('litellm_provider')
-  if provider not in SOURCES or provider in ['community','bailian','openrouter']:continue
+  if provider not in SOURCES or provider in ['community','bailian','openrouter'] or provider in domestic.DOMESTIC_HOSTS:continue
   if p.get('deprecation_date','9999') < dt.date.today().isoformat():continue
   a,b=number(p.get('input_cost_per_token')),number(p.get('output_cost_per_token'))
   if a is None or b is None:continue
@@ -266,7 +266,8 @@ def main(accepted=None):
     if key=='bailian':body=bailian_market.fetch();final=bailian_market.ENDPOINT
     else:
      with urllib.request.urlopen(req,timeout=45) as r:body=r.read();final=r.url
-    ext='json' if key in ['openrouter','community','deepinfra','bailian'] else 'md' if key=='deepseek' else 'html';digest=hashlib.sha256(body).hexdigest();path=ROOT/'data/raw'/digest[:2]/(digest+'.'+ext+'.gz');path.parent.mkdir(parents=True,exist_ok=True)
+    if key in domestic.DOMESTIC_HOSTS:domestic.check_origin(key,final)
+    ext='json' if key in ['openrouter','community','deepinfra','bailian'] else 'md' if key in ['deepseek','zhipu'] else 'html';digest=hashlib.sha256(body).hexdigest();path=ROOT/'data/raw'/digest[:2]/(digest+'.'+ext+'.gz');path.parent.mkdir(parents=True,exist_ok=True)
     if not path.exists():path.write_bytes(gzip.compress(body,mtime=0))
     return key,body,dict(provider=key,url=url,final_url=final,status='archived',sha256=hashlib.sha256(body).hexdigest(),raw=str(path.relative_to(ROOT)),fetched_at=now.isoformat())
    except Exception as e:
@@ -275,14 +276,17 @@ def main(accepted=None):
  with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
   for key,body,status in pool.map(fetch,SOURCES.items()):statuses.append(status);payloads[key]=body
  models=[]
- for key,parser in [('openrouter',lambda b:openrouter(json.loads(b))),('bailian',bailian_market.parse),('siliconflow',siliconflow),('minimax',minimax),('deepseek',deepseek),('deepinfra',deepinfra),('openai',lambda b:official_tables('openai',b)),('anthropic',lambda b:official_tables('anthropic',b)),('community',lambda b:community(json.loads(b)))]:
+ for key,parser in [('openrouter',lambda b:openrouter(json.loads(b))),('bailian',bailian_market.parse),('siliconflow',siliconflow),('minimax',minimax),('moonshot',domestic.kimi),('zhipu',domestic.zhipu),('deepseek',deepseek),('deepinfra',deepinfra),('openai',lambda b:official_tables('openai',b)),('anthropic',lambda b:official_tables('anthropic',b)),('community',lambda b:community(json.loads(b)))]:
   status=next(s for s in statuses if s['provider']==key)
   try:
    if payloads[key] is None:raise ValueError(status.get('error','fetch failed'))
    parsed=parser(payloads[key])
+   if key in domestic.DOMESTIC_HOSTS:parsed=domestic.market_policy(parsed)
    baseline=[r for r in previous['models'] if (r['provenance']=='community' if key=='community' else r['provider']==key and r['provenance']=='official')]
    # Chinese CNY quotes are a distinct billing catalogue; old USD history is retained.
    if key=='deepseek':baseline=[r for r in baseline if r['currency']=='CNY' and r['id'].startswith('deepseek:cn:')]
+   if key=='community':baseline=[r for r in baseline if r['provider'] not in domestic.DOMESTIC_HOSTS and r['provider']!='zai']
+   if key in domestic.DOMESTIC_HOSTS:baseline=domestic.market_policy(baseline)
    if key=='bailian':baseline=[r for r in baseline if r.get('pricing_basis')=='market_catalog']
    if key in accepted:
     if accepted[key]!=status['sha256']:raise ValueError('Reviewed source SHA-256 does not match current document')
@@ -318,7 +322,8 @@ def main(accepted=None):
  # An archived document is evidence, not a verified structured price.
  official_pairs={(r['provider'],r['canonical']) for r in models if r['provenance']=='official' and not r.get('stale')}
  models=[r for r in models if r['provenance']=='official' or (r['provider'],r['canonical']) not in official_pairs]
- unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='1.5.0',exchange_rate=exchange_rate,collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
+ models=domestic.market_policy(models)
+ unique={r['id']:r for r in models};snapshot=dict(schema_version=1,collector_version='2.5.0',exchange_rate=exchange_rate,collected_at=now.isoformat(),models=list(unique.values()),sources=statuses)
  saved=save_result(snapshot,stamp,previous_health)
  print(json.dumps({'models':len(unique),'sources':statuses},ensure_ascii=False))
  if any(s['status']=='failed' or s.get('warnings') for s in statuses):print('::warning::Prices quarantined or sources failed; inspect data/health.json')

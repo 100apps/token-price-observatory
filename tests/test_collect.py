@@ -97,7 +97,7 @@ class DecimalScalingTest(unittest.TestCase):
   import json
   rs=openrouter({'data':[{'id':'test','pricing':{'prompt':'0.0000004','completion':'0.00000219','input_cache_read':'0.000000044'}}]})
   self.assertEqual((rs[0]['currency'],rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),('USD',.4,2.19,.044))
-  rs=community({'deepseek/test':{'mode':'chat','litellm_provider':'deepseek','input_cost_per_token':4e-7,'output_cost_per_token':2.19e-6,'cache_read_input_token_cost':4.4e-8}})
+  rs=community({'openai/test':{'mode':'chat','litellm_provider':'openai','input_cost_per_token':4e-7,'output_cost_per_token':2.19e-6,'cache_read_input_token_cost':4.4e-8}})
   self.assertEqual((rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),(.4,2.19,.044))
   rs=deepinfra(json.dumps([dict(model_name='test',type='text-generation',pricing=dict(type='tokens',cents_per_input_token=.00002,cents_per_output_token=.00004,rate_per_input_token_cached=.1))]).encode())
   self.assertEqual((rs[0]['currency'],rs[0]['input'],rs[0]['output'],rs[0]['cache_read']),('USD',.2,.4,.02))

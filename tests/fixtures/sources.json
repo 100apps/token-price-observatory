@@ -22,5 +22,18 @@
     "url": "https://siliconflow.cn/pricing",
     "fetched_at": "2026-11-07T04:18:28.035113+00:00",
     "sha256": "177691c9bd36699819e4f72bb9a650253e2e708646827f891051254be5192717"
+  },
+  {
+    "provider": "zhipu",
+    "url": "https://docs.bigmodel.cn/cn/guide/start/pricing.md",
+    "fetched_at": "2026-11-08T11:36:22.348780+00:00",
+    "sha256": "c8b4d888027337ff73a24f58ebd25a6eea966155351214e164fcc640b34fca4f"
+  },
+  {
+    "provider": "moonshot",
+    "url": "https://platform.kimi.com/docs/pricing/chat",
+    "fetched_at": "2026-11-08T11:36:22.348780+00:00",
+    "sha256": "5735c21ba9c16ae6f4017d37aa06131809aca717745594bef0247953665017dc",
+    "fixture": "kimi-cn.txt is the exact compiled DocTable excerpt; SHA refers to full public response"
   }
 ]

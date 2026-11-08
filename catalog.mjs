@@ -16,7 +16,7 @@ const preferred={
  bailian:['qwen3.8-max','qwen3.8-flash','qwen3.7-plus-2026-05-26','qwen-plus','qwen3-coder-flash','deepseek-v4-pro','kimi-k3.1-pro','glm-5.3'],
  openrouter:['gpt-6.1-sol','claude-sonnet-5.5','gemini-3.8-flash','deepseek-v4-pro','qwen3.8-max-prime','kimi-k3.1-pro','gpt-6.1-terra','claude-opus-5.5','qwen3.8-flash','glm-5.3']
 };
-const order=['bailian','deepseek','openai','anthropic','openrouter','siliconflow','gemini','moonshot','zai','minimax','volcengine','tencent','xai','mistral','deepinfra','together_ai','fireworks_ai','bedrock','azure'];
+const order=['bailian','deepseek','siliconflow','moonshot','zhipu','minimax','volcengine','tencent','openai','anthropic','openrouter','gemini','xai','mistral','deepinfra','together_ai','fireworks_ai','bedrock','azure'];
 const names={deepinfra:'DeepInfra',fireworks_ai:'Fireworks AI',together_ai:'Together AI',bedrock:'Amazon Bedrock',azure:'Azure OpenAI',xai:'xAI',mistral:'Mistral AI'};
 export function platformName(row){return names[row.provider]||row.platform}
 export function platformRank(provider){const i=order.indexOf(provider);return i<0?999:i}

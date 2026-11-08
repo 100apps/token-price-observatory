@@ -3,3 +3,5 @@ test('regular quote is preferred instead of hidden cheapest batch/offpeak condit
 test('batch ignores cache allocation; unknown read cost remains conservative',()=>{const p=costParts({input:2,output:4,cache_supported:false},1e6,1e6,.9);assert.deepEqual(p,{uncached:2,cached:0,output:4});const q=costParts({input:2,output:4},1e6,1e6,.9);assert.equal(q.uncached+q.cached+q.output,6)});
 
 test('rank total costs numerically with stable ties, unavailable costs last, without mutating selection',()=>{const rs=[{id:'c',cost:100},{id:'b',cost:9},{id:'a',cost:9},{id:'d',cost:NaN}];assert.deepEqual(rankQuotes(rs,r=>r.cost).map(r=>r.id),['a','b','c','d']);assert.equal(rs[0].id,'c');assert.deepEqual(rankQuotes(rs,r=>r.id==='c'?0:r.cost).map(r=>r.id),['c','a','b','d'])});
+
+test('domestic quotation wins default market choice before processing mode; explicit quote remains selectable',()=>{const rows=[{id:'intl',variant:'standard',pricing_market:'international'},{id:'cn',variant:'Batch File',pricing_market:'cn'}];assert.equal(chooseQuote(rows).id,'cn');assert.equal(chooseQuote(rows,'intl').id,'intl')});
