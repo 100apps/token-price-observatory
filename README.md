@@ -176,3 +176,25 @@ GitHub 的定时任务可能延迟或因长期不活跃暂停；单靠仓库内�
 界面以复古数据工作站为方向：深海军蓝底、暖白文字、琥珀重点、冷青色链接，方角面板与硬边阴影；中文正文及价格保留易读的常规字形。没有引入动画噪点、闪烁或扫描线遮挡数据。
 
 视觉参考（未直接引入其框架代码）：[NES.css](https://nostalgic-css.github.io/NES.css/)、[98.css](https://jdan.github.io/98.css/)、[system.css](https://sakofchit.github.io/system.css/)。英文标识采用本地托管的 Silkscreen，授权文件为 `assets/Silkscreen-OFL.txt`；页面不再依赖在线 Google Fonts 请求。价格与采集逻辑未在此次视觉更新中变更。
+
+## 百炼 CLI 公开市场接口修复（v1.7）
+
+**v1.5 的限制已由此修复替代。** 当时只验证了网页 `/data/api.json` 网关，返回 `ConsoleNeedLogin`，据此推断“市场价格必须登录”不完整。官方 CLI 另有公开网关，模型目录命令不需要账号、API Key 或控制台 Cookie。
+
+本次实际安装并验证 `bailian-cli@2.8.4`，执行：
+
+```sh
+bl --version
+bl model list --model deepseek-v4-pro --output json
+```
+
+官方依据：[安装文档](https://bailian.aliyun.com/cli/install.md)、[模型市场命令文档](https://docs.bailian.console.aliyun.com/zh/model-studio/cli/config.md)、[CLI 网关源码](https://github.com/modelstudioai/cli/blob/cadc301d078f0fd1f2c56f7bf94f32c55bbb055d/packages/core/src/console/gateway.ts)、[目录和分页源码](https://github.com/modelstudioai/cli/blob/cadc301d078f0fd1f2c56f7bf94f32c55bbb055d/packages/core/src/console/models.ts)。CLI 的 `model list` 使用 `anonymousConsoleCall`，实际调用北京站 `https://bailian-cs.console.aliyun.com/cli/api.json`。
+
+日更程序直接按这个官方公开协议读取，避免生产任务额外安装 CLI。每页 50 个模型族，验证总数稳定且分页完整，保存完整原始响应及来源代码版本。本次返回 126 个模型族；模型条目数量和报价条数另计。只解析有明确 token 单位、文本输出、输入输出配对和可识别计费条件的报价；图像、音频、工具调用等价格保留在原始证据中，不混入文本计算。
+
+- 北京市场公开的输入/输出、隐式缓存、上下文阶梯、思考、忙闲时价分别成行，原币种为 CNY。
+- Batch File 直接使用其自身单价，不再额外乘 0.5，不套用实时缓存折扣。
+- **Batch Chat 限时五折**有独立官方证据：[计费说明](https://docs.bailian.console.aliyun.com/zh/model-studio/openai-compatible-batch-chat.md)。文档明确“目录价与实时调用价格一致，最终费用为实时调用价格的 50%”，且不支持上下文缓存、预付费和新人免费额度。每天同时抓取该文档：仅在规则文字仍有效、目录输入输出 `discount=0.5`、原始金额与对应实时目录价一致时计算五折，避免重复打折。规则或字段不匹配时不输出该优惠报价。
+- 账号专属套餐、领券、新客或承诺消费权益仍不默认叠加，不能把所有活动都解释为通用五折。公开市场价不等于某个账号的最终账单。
+- 源失败时保留上次成功的**市场报价**并标为旧数据；从未核验过的旧文档原价仍不可计算。公开目录成功后恢复百炼平台的正常展示和每日更新，不再显示登录失败提示。
+- `tests/fixtures/bailian-public.json` 为实际公开响应中 3 个模型族的摘录，分页壳与简短优惠规则用于离线回归测试；完整原始响应随日更证据保留。测试覆盖单位、缓存、忙闲时、上下文/思考模式、五折仅计算一次、无规则不猜优惠、分页缺失拒收。

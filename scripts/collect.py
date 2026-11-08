@@ -253,7 +253,9 @@ def main(accepted=None):
   for attempt in range(3):
    try:
     req=bailian_market.request() if key=='bailian' else urllib.request.Request(url,headers={'User-Agent':'TokenPriceObservatory/1.0 (+https://github.com/100apps/token-price-observatory)'})
-    with urllib.request.urlopen(req,timeout=45) as r:body=r.read();final=r.url
+    if key=='bailian':body=bailian_market.fetch();final=bailian_market.ENDPOINT
+    else:
+     with urllib.request.urlopen(req,timeout=45) as r:body=r.read();final=r.url
     ext='json' if key in ['openrouter','community','deepinfra','bailian'] else 'md' if key=='deepseek' else 'html';digest=hashlib.sha256(body).hexdigest();path=ROOT/'data/raw'/digest[:2]/(digest+'.'+ext+'.gz');path.parent.mkdir(parents=True,exist_ok=True)
     if not path.exists():path.write_bytes(gzip.compress(body,mtime=0))
     return key,body,dict(provider=key,url=url,final_url=final,status='archived',sha256=hashlib.sha256(body).hexdigest(),raw=str(path.relative_to(ROOT)),fetched_at=now.isoformat())
@@ -269,6 +271,7 @@ def main(accepted=None):
    if payloads[key] is None:raise ValueError(status.get('error','fetch failed'))
    parsed=parser(payloads[key])
    baseline=[r for r in previous['models'] if (r['provenance']=='community' if key=='community' else r['provider']==key and r['provenance']=='official')]
+   if key=='bailian':baseline=[r for r in baseline if r.get('pricing_basis')=='market_catalog']
    if key in accepted:
     if accepted[key]!=status['sha256']:raise ValueError('Reviewed source SHA-256 does not match current document')
     baseline=[];status['reviewed_sha256']=accepted[key]
@@ -299,7 +302,7 @@ def main(accepted=None):
    models+=old
  # Market promotions must be verified independently; never revive old list-price rows.
  for r in models:
-  if r['provider']=='bailian':r.update(calculation_blocked=True,pricing_basis='unverified_list_price',quality_issue='百炼活动价未核验；文档标价不参与计算或比较',market_source=bailian_market.MARKET)
+  if r['provider']=='bailian' and r.get('pricing_basis')!='market_catalog':r.update(calculation_blocked=True,pricing_basis='unverified_list_price',quality_issue='百炼活动价未核验；文档标价不参与计算或比较',market_source=bailian_market.MARKET)
  # An archived document is evidence, not a verified structured price.
  official_pairs={(r['provider'],r['canonical']) for r in models if r['provenance']=='official' and not r.get('stale')}
  models=[r for r in models if r['provenance']=='official' or (r['provider'],r['canonical']) not in official_pairs]

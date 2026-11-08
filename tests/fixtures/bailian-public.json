@@ -1,0 +1,3144 @@
+{
+  "format": "bailian-cli-public-v1",
+  "total": 3,
+  "pages": [
+    {
+      "data": {
+        "DataV2": {
+          "data": {
+            "data": {
+              "total": 3,
+              "list": [
+                {
+                  "applyType": 0,
+                  "updateAt": "2026-09-01T09:00:33.000+00:00",
+                  "description": "Qwen3.8原生视觉语言系列Max模型，是通义千问迄今能力最强的旗舰模型，拥有2.4万亿参数，采用MoE架构，展现出与当前顶尖前沿模型相媲美的卓越性能，模型效果相较3.7系列显著提升。",
+                  "aliyunRecommend": false,
+                  "collectionTag": "qwen3.8",
+                  "modelInfo": {},
+                  "provider": "qwen",
+                  "permissions": {},
+                  "quota": {},
+                  "scope": "PUBLIC",
+                  "maxContextWindow": 1000000,
+                  "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                  "supports": {
+                    "eval": true,
+                    "experience": true,
+                    "deploy": true
+                  },
+                  "minContextWindow": 1000000,
+                  "model": "group-qwen3.8-max",
+                  "categories": [
+                    "Flagship"
+                  ],
+                  "group": true,
+                  "capabilities": [
+                    "Reasoning",
+                    "VU",
+                    "TG"
+                  ],
+                  "activationStatus": 0,
+                  "shortDescription": "Qwen3.8原生视觉语言系列Max模型，是通义千问迄今能力最强的旗舰模型，拥有2.4万亿参数，采用MoE架构，展现出与当前顶尖前沿模型相媲美的卓越性能，模型效果相较3.7系列显著提升。",
+                  "latestOnlineAt": "2026-09-01T09:00:33.000+00:00",
+                  "license": {},
+                  "inferenceSpeeds": [],
+                  "inferenceProvider": "aliyun-bailian",
+                  "name": "Qwen3.8-Max",
+                  "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions",
+                  "needApply": false,
+                  "items": [
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Image",
+                          "Text",
+                          "Video"
+                        ]
+                      },
+                      "applyType": 0,
+                      "builtInToolMultiPrices": [
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "code_interpreter",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-code-interpreter",
+                          "type": "code_interpreter",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_extractor",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_extractor",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "i2i_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/image-search",
+                          "type": "i2i_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "48",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "t2i_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search-image",
+                          "type": "t2i_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "24",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Completions API",
+                          "name": "pdf_parsing",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/pdf-understanding",
+                          "type": "pdf_parsing",
+                          "prices": [
+                            {
+                              "priceUnit": "每页",
+                              "price": "0.02",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_fetch",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_fetch",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search_anthropic",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        }
+                      ],
+                      "updateAt": "2026-08-02T04:14:32.000+00:00",
+                      "description": "2.4万亿参数MoE旗舰，编程与办公能力全面跃升，可自主编程十数天交付完整项目。胜任法律、金融、设计等数百种专业任务，一次对话端到端交付生产级成果。原生视觉理解贯穿规划、执行与验证全流程，支持超长文档与长视频的深度语义解析。长程任务中自主规划与闭环迭代，持续进化。",
+                      "aliyunRecommend": true,
+                      "collectionTag": "qwen3.8",
+                      "features": [
+                        "cache",
+                        "function-calling",
+                        "model-experience",
+                        "prefix-completion",
+                        "structured-outputs",
+                        "web-search",
+                        "batch"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 991808,
+                        "maxReasoningTokens": 262144,
+                        "reasoningMaxInputTokens": 983616,
+                        "maxOutputTokens": 131072,
+                        "reasoningMaxOutputTokens": 131072
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "dpo": false,
+                        "inference": true,
+                        "workflow": false,
+                        "cpt": false,
+                        "managedAgents": true,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": true,
+                        "sellingByQpm": false,
+                        "workflowText": true,
+                        "experienceV2": true,
+                        "eval": true,
+                        "experienceUpcoming": false,
+                        "appV2": true,
+                        "appV1": true,
+                        "autoTPM": true
+                      },
+                      "model": "qwen3.8-max",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "12",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "36",
+                          "timeBand": "standard",
+                          "ntmAmountType": "output_token",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1.5",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_cache",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "6",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_batch",
+                          "type": "input_token_batch",
+                          "priceName": "输入（Batch File）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "18",
+                          "timeBand": "standard",
+                          "ntmAmountType": "output_token_batch",
+                          "type": "output_token_batch",
+                          "priceName": "输出（Batch File）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "15",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_cache_creation_5m",
+                          "type": "input_token_cache_creation_5m",
+                          "priceName": "显式缓存创建"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_cache_read",
+                          "type": "input_token_cache_read",
+                          "priceName": "显式缓存命中"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "12",
+                          "timeBand": "standard",
+                          "discount": 0.5,
+                          "ntmAmountType": "input_token_batch",
+                          "type": "input_token_batch_chat",
+                          "priceName": "输入（Batch Chat)"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "36",
+                          "timeBand": "standard",
+                          "discount": 0.5,
+                          "ntmAmountType": "output_token_batch",
+                          "type": "output_token_batch_chat",
+                          "priceName": "输出（Batch Chat)"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "usage_limit": 500000,
+                          "usage_limit_field": "total_tokens",
+                          "usage_limit_period": 6,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "capabilities": [
+                        "Reasoning",
+                        "VU",
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "modelAlias": "qwen3.8-max",
+                      "versionTag": "MAJOR",
+                      "shortDescription": "2.4万亿参数MoE旗舰，编程与办公能力全面跃升，可自主编程十数天交付完整项目。胜任法律、金融、设计等数百种专业任务，一次对话端到端交付生产级成果。原生视觉理解贯穿规划、执行与验证全流程，支持超长文档与长视频的深度语义解析。长程任务中自主规划与闭环迭代，持续进化。",
+                      "maxOutputTokens": 131072,
+                      "latestOnlineAt": "2026-08-02T04:14:32.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 991808,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen3.8-Max",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions",
+                      "needApply": false,
+                      "category": "Flagship"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Image",
+                          "Text",
+                          "Video"
+                        ]
+                      },
+                      "applyType": 0,
+                      "builtInToolMultiPrices": [
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "code_interpreter",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-code-interpreter",
+                          "type": "code_interpreter",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "i2i_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/image-search",
+                          "type": "i2i_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "48",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "t2i_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search-image",
+                          "type": "t2i_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "24",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_extractor",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_extractor",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Completions API",
+                          "name": "pdf_parsing",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/pdf-understanding",
+                          "type": "pdf_parsing",
+                          "prices": [
+                            {
+                              "priceUnit": "每页",
+                              "price": "0.02",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_fetch",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_fetch",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search_anthropic",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        }
+                      ],
+                      "updateAt": "2026-09-01T09:00:33.000+00:00",
+                      "description": "Qwen3.8-Max-0902（别名qwen3.8-max-2026-09-02）是qwen3.8-max的快照版本。编码深度再突破，可驾驭更复杂的工程级项目与长程自主开发；协作智能体能力显著增强，在多工具调度与端到端交付中表现更从容；视觉理解全面精进，图表推理、文档解析与多模态感知更敏锐准确。延续 100 万上下文、思考模式与完整工具生态，在更高智能水平上持续进化。",
+                      "aliyunRecommend": false,
+                      "collectionTag": "qwen3.8",
+                      "features": [
+                        "cache",
+                        "function-calling",
+                        "model-experience",
+                        "prefix-completion",
+                        "structured-outputs",
+                        "web-search"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 991808,
+                        "maxReasoningTokens": 262144,
+                        "reasoningMaxInputTokens": 983616,
+                        "maxOutputTokens": 131072,
+                        "reasoningMaxOutputTokens": 131072
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "fineTune": false,
+                        "experienceV2": false,
+                        "eval": false,
+                        "inference": true,
+                        "autoTPM": true,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": false
+                      },
+                      "model": "qwen3.8-max-0902",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "12",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "36",
+                          "timeBand": "standard",
+                          "ntmAmountType": "output_token",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1.5",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_cache",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "15",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_cache_creation_5m",
+                          "type": "input_token_cache_creation_5m",
+                          "priceName": "显式缓存创建"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_cache_read",
+                          "type": "input_token_cache_read",
+                          "priceName": "显式缓存命中"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "usage_limit": 150000,
+                          "usage_limit_field": "total_tokens",
+                          "usage_limit_period": 6,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "capabilities": [
+                        "TG",
+                        "VU",
+                        "Reasoning"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "Qwen3.8-Max-0902（别名qwen3.8-max-2026-09-02）是qwen3.8-max的快照版本。编码深度再突破，可驾驭更复杂的工程级项目与长程自主开发；协作智能体能力显著增强，在多工具调度与端到端交付中表现更从容；视觉理解全面精进，图表推理、文档解析与多模态感知更敏锐准确。延续 100 万上下文、思考模式与完整工具生态，在更高智能水平上持续进化。",
+                      "maxOutputTokens": 131072,
+                      "latestOnlineAt": "2026-09-01T09:00:33.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 991808,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen3.8-Max-0902",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions",
+                      "needApply": false,
+                      "category": "Flagship"
+                    }
+                  ],
+                  "providers": [
+                    "qwen"
+                  ]
+                },
+                {
+                  "applyType": 0,
+                  "updateAt": "2026-10-18T16:27:49.000+00:00",
+                  "description": "DeepSeek 系列模型覆盖通用对话、复杂推理与多模态理解等场景，提供 Flash、Pro 等不同规格，可根据效果、响应速度和成本灵活选择。",
+                  "aliyunRecommend": false,
+                  "modelInfo": {},
+                  "provider": "deepseek",
+                  "permissions": {},
+                  "quota": {},
+                  "scope": "PUBLIC",
+                  "maxContextWindow": 1000000,
+                  "providerIconUrl": "https://img.alicdn.com/imgextra/i1/O1CN01GsfGyX1zIXFDHwxWd_!!6000000006691-55-tps-40-40.svg",
+                  "supports": {
+                    "experience": true,
+                    "deploy": true
+                  },
+                  "minContextWindow": 32768,
+                  "model": "group-deepseek",
+                  "categories": [
+                    "Third-party"
+                  ],
+                  "group": true,
+                  "capabilities": [
+                    "TG",
+                    "Reasoning",
+                    "VU"
+                  ],
+                  "activationStatus": 0,
+                  "shortDescription": "DeepSeek 系列模型覆盖通用对话、复杂推理与多模态理解等场景，提供 Flash、Pro 等不同规格，可根据效果、响应速度和成本灵活选择。",
+                  "latestOnlineAt": "2026-10-18T16:27:49.000+00:00",
+                  "license": {},
+                  "inferenceSpeeds": [],
+                  "inferenceProvider": "aliyun-bailian",
+                  "name": "DeepSeek",
+                  "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions",
+                  "needApply": false,
+                  "items": [
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text",
+                          "Image"
+                        ]
+                      },
+                      "applyType": 0,
+                      "builtInToolMultiPrices": [
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "code_interpreter",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-code-interpreter",
+                          "type": "code_interpreter",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_extractor",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_extractor",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search_anthropic",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_fetch",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_fetch",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        }
+                      ],
+                      "updateAt": "2026-10-18T16:27:49.000+00:00",
+                      "description": "DeepSeek-V4.1-Flash-1017 是 V4.1-Flash 的最新迭代版本，通过基于自反馈的强化学习（RL）训练，在 Terminal-Bench 4.0、DeepSWE v1.1、ProgramBench 等多项基准上较上版显著提升，同时缩短任务运行时间与输出长度，在多个 Harness 下达到新的性能–费用帕累托最优。模型从零构建完整项目的能力进一步增强，可支持游戏开发、3D 建模等“许愿式”编程任务，延续上一版的 552B 总参数 MoE、原生多模态视觉理解、1M 上下文与 384K 最大输出。",
+                      "aliyunRecommend": false,
+                      "features": [
+                        "cache",
+                        "function-calling",
+                        "structured-outputs",
+                        "web-search"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 1000000,
+                        "maxReasoningTokens": 393216,
+                        "reasoningMaxInputTokens": 1000000,
+                        "maxOutputTokens": 393216,
+                        "reasoningMaxOutputTokens": 393216
+                      },
+                      "provider": "deepseek",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i1/O1CN01GsfGyX1zIXFDHwxWd_!!6000000006691-55-tps-40-40.svg",
+                      "supports": {
+                        "fineTune": false,
+                        "experienceV2": true,
+                        "eval": false,
+                        "inference": true,
+                        "appV2": true,
+                        "managedAgents": true,
+                        "autoTPM": true,
+                        "displayQpmLimit": true,
+                        "deploy": false,
+                        "workflowText": true
+                      },
+                      "model": "deepseek-v4.1-flash-1017",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1",
+                          "timeBand": "offpeak",
+                          "docUrl": "",
+                          "ntmAmountType": "input_token_offpeak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "2",
+                          "timeBand": "peak",
+                          "docUrl": "",
+                          "ntmAmountType": "input_token_peak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "4",
+                          "timeBand": "offpeak",
+                          "docUrl": "",
+                          "ntmAmountType": "output_token_offpeak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "8",
+                          "timeBand": "peak",
+                          "docUrl": "",
+                          "ntmAmountType": "output_token_peak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.1",
+                          "timeBand": "offpeak",
+                          "docUrl": "",
+                          "ntmAmountType": "input_token_cache_offpeak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.2",
+                          "timeBand": "peak",
+                          "docUrl": "",
+                          "ntmAmountType": "input_token_cache_peak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "usage_limit": 120000,
+                          "usage_limit_field": "total_tokens",
+                          "usage_limit_period": 6,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "offpeak",
+                        "peak"
+                      ],
+                      "capabilities": [
+                        "TG",
+                        "Reasoning",
+                        "VU"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "DeepSeek-V4.1-Flash-1017 是 V4.1-Flash 的最新迭代版本，通过基于自反馈的强化学习（RL）训练，在 Terminal-Bench 4.0、DeepSWE v1.1、ProgramBench 等多项基准上较上版显著提升，同时缩短任务运行时间与输出长度，在多个 Harness 下达到新的性能–费用帕累托最优。模型从零构建完整项目的能力进一步增强，可支持游戏开发、3D 建模等“许愿式”编程任务，延续上一版的 552B 总参数 MoE、原生多模态视觉理解、1M 上下文与 384K 最大输出。",
+                      "maxOutputTokens": 393216,
+                      "latestOnlineAt": "2026-10-18T16:27:49.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 1000000,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "DeepSeek-V4.1-Flash-1017",
+                      "needApply": false,
+                      "category": "Third-party"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text",
+                          "Image"
+                        ]
+                      },
+                      "applyType": 0,
+                      "builtInToolMultiPrices": [
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "code_interpreter",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-code-interpreter",
+                          "type": "code_interpreter",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_extractor",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_extractor",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_fetch",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_fetch",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search_anthropic",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        }
+                      ],
+                      "updateAt": "2026-09-12T16:13:01.000+00:00",
+                      "description": "DeepSeek-V4.1-Flash 是 DeepSeek 全新架构系列中的轻量旗舰模型，以 552B 总参数 MoE 实现越级智能，在多项基准上超越包括 DeepSeek-V4-Pro 在内的主流旗舰模型。采用 Causal Encoder-Decoder 非对称架构，输入激活仅 8B、输出激活 16B，并具备原生多模态视觉理解能力。KV Cache 压缩至上一代 HBM 的 1/4、SSD 的 1/8，显著降低长上下文与 Agent 任务成本。支持 1M 上下文与 384K 最大输出，兼顾高吞吐、低延迟与极致性价比。",
+                      "aliyunRecommend": false,
+                      "features": [
+                        "cache",
+                        "function-calling",
+                        "structured-outputs",
+                        "web-search"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 1000000,
+                        "maxReasoningTokens": 393216,
+                        "reasoningMaxInputTokens": 1000000,
+                        "maxOutputTokens": 393216,
+                        "reasoningMaxOutputTokens": 393216
+                      },
+                      "provider": "deepseek",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i1/O1CN01GsfGyX1zIXFDHwxWd_!!6000000006691-55-tps-40-40.svg",
+                      "supports": {
+                        "fineTune": false,
+                        "experienceV2": true,
+                        "eval": false,
+                        "inference": true,
+                        "appV2": true,
+                        "managedAgents": true,
+                        "autoTPM": true,
+                        "experience": false,
+                        "displayQpmLimit": true,
+                        "deploy": true,
+                        "workflowText": true
+                      },
+                      "model": "deepseek-v4.1-flash",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "input_token_offpeak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "2",
+                          "timeBand": "peak",
+                          "ntmAmountType": "input_token_peak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "4",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "output_token_offpeak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "8",
+                          "timeBand": "peak",
+                          "ntmAmountType": "output_token_peak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.1",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "input_token_cache_offpeak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.2",
+                          "timeBand": "peak",
+                          "ntmAmountType": "input_token_cache_peak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "usage_limit": 120000,
+                          "usage_limit_field": "total_tokens",
+                          "usage_limit_period": 6,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "offpeak",
+                        "peak"
+                      ],
+                      "capabilities": [
+                        "TG",
+                        "Reasoning",
+                        "VU"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "MAJOR",
+                      "shortDescription": "DeepSeek-V4.1-Flash 是 DeepSeek 全新架构系列中的轻量旗舰模型，以 552B 总参数 MoE 实现越级智能，在多项基准上超越包括 DeepSeek-V4-Pro 在内的主流旗舰模型。采用 Causal Encoder-Decoder 非对称架构，输入激活仅 8B、输出激活 16B，并具备原生多模态视觉理解能力。KV Cache 压缩至上一代 HBM 的 1/4、SSD 的 1/8，显著降低长上下文与 Agent 任务成本。支持 1M 上下文与 384K 最大输出，兼顾高吞吐、低延迟与极致性价比。",
+                      "maxOutputTokens": 393216,
+                      "latestOnlineAt": "2026-09-12T16:13:01.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 1000000,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "DeepSeek-V4.1-Flash",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/deepseek-api",
+                      "needApply": false,
+                      "category": "Third-party"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "builtInToolMultiPrices": [
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "code_interpreter",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-code-interpreter",
+                          "type": "code_interpreter",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_extractor",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_extractor",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search_anthropic",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_fetch",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_fetch",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        }
+                      ],
+                      "updateAt": "2026-08-14T04:06:20.000+00:00",
+                      "description": "旗舰级 MoE 大模型，总参1.6T、激活 49B，原生支持百万级超长上下文。依托海量高质量训练数据，具备顶尖数学逻辑、复杂推理、专业代码与长文本深度解析能力，适配高阶科研、复杂办公、深度智能代理等高难度场景。",
+                      "aliyunRecommend": false,
+                      "features": [
+                        "cache",
+                        "function-calling",
+                        "model-experience",
+                        "structured-outputs",
+                        "web-search"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 1000000,
+                        "maxReasoningTokens": 393216,
+                        "reasoningMaxInputTokens": 1000000,
+                        "maxOutputTokens": 393216,
+                        "reasoningMaxOutputTokens": 393216
+                      },
+                      "provider": "deepseek",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i1/O1CN01GsfGyX1zIXFDHwxWd_!!6000000006691-55-tps-40-40.svg",
+                      "supports": {
+                        "fineTune": false,
+                        "experienceV2": false,
+                        "eval": false,
+                        "inference": true,
+                        "appV2": true,
+                        "appV1": true,
+                        "autoTPM": true,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": true,
+                        "workflowText": true
+                      },
+                      "model": "deepseek-v4-pro-0813",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "4.5",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "input_token_offpeak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "9",
+                          "timeBand": "peak",
+                          "ntmAmountType": "input_token_peak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "13.5",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "output_token_offpeak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "27",
+                          "timeBand": "peak",
+                          "ntmAmountType": "output_token_peak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.45",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "input_token_cache_offpeak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.9",
+                          "timeBand": "peak",
+                          "ntmAmountType": "input_token_cache_peak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "usage_limit": 120000,
+                          "usage_limit_field": "total_tokens",
+                          "usage_limit_period": 6,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "offpeak",
+                        "peak"
+                      ],
+                      "capabilities": [
+                        "TG",
+                        "Reasoning"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "旗舰级 MoE 大模型，总参1.6T、激活 49B，原生支持百万级超长上下文。依托海量高质量训练数据，具备顶尖数学逻辑、复杂推理、专业代码与长文本深度解析能力，适配高阶科研、复杂办公、深度智能代理等高难度场景。",
+                      "maxOutputTokens": 393216,
+                      "latestOnlineAt": "2026-08-14T04:06:20.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 1000000,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "DeepSeek-V4-Pro-0813",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/deepseek-api",
+                      "needApply": false,
+                      "category": "Third-party"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "builtInToolMultiPrices": [
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_extractor",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_extractor",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "code_interpreter",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-code-interpreter",
+                          "type": "code_interpreter",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search_anthropic",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_fetch",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_fetch",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        }
+                      ],
+                      "updateAt": "2026-04-24T07:51:09.000+00:00",
+                      "description": "旗舰级 MoE 大模型，总参1.6T、激活 49B，原生支持百万级超长上下文。依托海量高质量训练数据，具备顶尖数学逻辑、复杂推理、专业代码与长文本深度解析能力，适配高阶科研、复杂办公、深度智能代理等高难度场景。",
+                      "aliyunRecommend": false,
+                      "features": [
+                        "cache",
+                        "function-calling",
+                        "model-experience",
+                        "web-search",
+                        "structured-outputs"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 1000000,
+                        "maxOutputTokens": 393216
+                      },
+                      "provider": "deepseek",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i1/O1CN01GsfGyX1zIXFDHwxWd_!!6000000006691-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "app": true,
+                        "dpo": false,
+                        "inference": true,
+                        "workflow": true,
+                        "cpt": false,
+                        "managedAgents": true,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": true,
+                        "sellingByQpm": false,
+                        "workflowText": true,
+                        "experienceV2": false,
+                        "eval": false,
+                        "experienceUpcoming": false,
+                        "appV2": true,
+                        "appV1": true
+                      },
+                      "model": "deepseek-v4-pro",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "12",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "24",
+                          "timeBand": "standard",
+                          "ntmAmountType": "output_token",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token_cache",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 3,
+                          "usage_limit": 200000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 750,
+                          "usage_limit_period": 10,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "capabilities": [
+                        "Reasoning",
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "modelAlias": "",
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "旗舰级 MoE 大模型，总参1.6T、激活 49B，原生支持百万级超长上下文。依托海量高质量训练数据，具备顶尖数学逻辑、复杂推理、专业代码与长文本深度解析能力，适配高阶科研、复杂办公、深度智能代理等高难度场景。",
+                      "maxOutputTokens": 393216,
+                      "latestOnlineAt": "2026-04-24T07:51:09.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 1000000,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "DeepSeek-V4-Pro",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/deepseek-api",
+                      "needApply": false,
+                      "category": "Third-party"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "builtInToolMultiPrices": [
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "web_extractor",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_extractor",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Responses API",
+                          "name": "code_interpreter",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-code-interpreter",
+                          "type": "code_interpreter",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_search",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-search",
+                          "type": "web_search_anthropic",
+                          "prices": [
+                            {
+                              "priceUnit": "千次调用",
+                              "price": "4",
+                              "currency": "CNY"
+                            }
+                          ]
+                        },
+                        {
+                          "supportedApi": "Anthropic API",
+                          "name": "web_fetch",
+                          "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/web-extractor",
+                          "type": "web_fetch",
+                          "prices": [
+                            {
+                              "priceUnit": "",
+                              "price": "0",
+                              "currency": "CNY"
+                            }
+                          ]
+                        }
+                      ],
+                      "updateAt": "2026-07-31T16:09:35.000+00:00",
+                      "description": "高效轻量化MoE模型，总参284B，激活13B，原生支持百万超长上下文能力。推理速度快、延迟低、调用成本低廉，综合能力均衡，主打高并发、轻量化任务，适合日常对话、内容创作、基础 RAG、批量文案处理等普惠刚需场景。",
+                      "aliyunRecommend": false,
+                      "features": [
+                        "cache",
+                        "function-calling",
+                        "model-experience",
+                        "web-search",
+                        "structured-outputs"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 1000000,
+                        "maxOutputTokens": 393216
+                      },
+                      "provider": "deepseek",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i1/O1CN01GsfGyX1zIXFDHwxWd_!!6000000006691-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "dpo": false,
+                        "inference": true,
+                        "cpt": false,
+                        "managedAgents": true,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": true,
+                        "sellingByQpm": false,
+                        "workflowText": true,
+                        "experienceV2": false,
+                        "eval": false,
+                        "experienceUpcoming": false,
+                        "appV2": true,
+                        "appV1": true
+                      },
+                      "model": "deepseek-v4-flash-0731",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "1.5",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "input_token_offpeak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "3",
+                          "timeBand": "peak",
+                          "ntmAmountType": "input_token_peak",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "4.5",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "output_token_offpeak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "9",
+                          "timeBand": "peak",
+                          "ntmAmountType": "output_token_peak",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.15",
+                          "timeBand": "offpeak",
+                          "ntmAmountType": "input_token_cache_offpeak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.3",
+                          "timeBand": "peak",
+                          "ntmAmountType": "input_token_cache_peak",
+                          "type": "input_token_cache",
+                          "priceName": "输入（缓存命中）"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 6,
+                          "usage_limit": 1200000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 1500,
+                          "usage_limit_period": 60,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "offpeak",
+                        "peak"
+                      ],
+                      "capabilities": [
+                        "Reasoning",
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "modelAlias": "",
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "高效轻量化MoE模型，总参284B，激活13B，原生支持百万超长上下文能力。推理速度快、延迟低、调用成本低廉，综合能力均衡，主打高并发、轻量化任务，适合日常对话、内容创作、基础 RAG、批量文案处理等普惠刚需场景。",
+                      "maxOutputTokens": 393216,
+                      "latestOnlineAt": "2026-07-31T16:09:35.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 1000000,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "DeepSeek-V4-Flash-0731",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/deepseek-api",
+                      "needApply": false,
+                      "category": "Third-party"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "updateAt": "2025-02-05T11:57:01.000+00:00",
+                      "description": "DeepSeek-R1-Distill-Qwen-1.5B是一个基于Qwen2.5-Math-1.5B的蒸馏大型语言模型，使用了 DeepSeek R1 的输出。",
+                      "aliyunRecommend": false,
+                      "features": [
+                        "model-experience"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 32768,
+                        "maxInputTokens": 32768,
+                        "maxOutputTokens": 16384
+                      },
+                      "provider": "deepseek",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i1/O1CN01GsfGyX1zIXFDHwxWd_!!6000000006691-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "app": false,
+                        "dpo": false,
+                        "inference": true,
+                        "cpt": false,
+                        "checkpointImport": false,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": false,
+                        "sellingByQpm": false,
+                        "tokenizer": false,
+                        "experienceV2": false,
+                        "eval": false,
+                        "experienceUpcoming": false
+                      },
+                      "model": "deepseek-r1-distill-qwen-1.5b",
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 60,
+                          "usage_limit": 100000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 60,
+                          "usage_limit_period": 60,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "capabilities": [
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "DeepSeek-R1-Distill-Qwen-1.5B是一个基于Qwen2.5-Math-1.5B的蒸馏大型语言模型，使用了 DeepSeek R1 的输出。",
+                      "maxOutputTokens": 16384,
+                      "latestOnlineAt": "2025-02-05T11:57:01.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 32768,
+                      "maxInputTokens": 32768,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "DeepSeek-R1-Distill-Qwen-1.5B",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/deepseek-api",
+                      "needApply": false
+                    }
+                  ],
+                  "providers": [
+                    "deepseek"
+                  ]
+                },
+                {
+                  "applyType": 0,
+                  "updateAt": "2025-12-01T02:32:00.000+00:00",
+                  "description": "千问超大规模语言模型的增强版，支持中文英文等不同语言输入。主干模型、latest和快照04-28已升级Qwen3系列，实现思考模式和非思考模式的有效融合，可在对话中切换模式。",
+                  "aliyunRecommend": false,
+                  "collectionTag": "qwen3",
+                  "modelInfo": {},
+                  "provider": "qwen",
+                  "permissions": {},
+                  "quota": {},
+                  "scope": "PUBLIC",
+                  "maxContextWindow": 1000000,
+                  "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                  "supports": {
+                    "eval": true,
+                    "experience": true,
+                    "deploy": true
+                  },
+                  "minContextWindow": 131072,
+                  "model": "qwen-plus",
+                  "categories": [
+                    "Flagship"
+                  ],
+                  "group": true,
+                  "capabilities": [
+                    "Reasoning",
+                    "TG"
+                  ],
+                  "activationStatus": 0,
+                  "shortDescription": "千问超大规模语言模型的增强版，支持中文英文等不同语言输入。主干模型、latest和快照04-28已升级Qwen3系列，实现思考模式和非思考模式的有效融合，可在对话中切换模式。",
+                  "latestOnlineAt": "2025-12-01T02:32:00.000+00:00",
+                  "license": {},
+                  "inferenceSpeeds": [],
+                  "inferenceProvider": "aliyun-bailian",
+                  "name": "Qwen-Plus",
+                  "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions",
+                  "needApply": false,
+                  "items": [
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "updateAt": "2025-06-23T16:00:00.000+00:00",
+                      "description": "Qwen3系列Plus模型，实现思考模式和非思考模式的有效融合，可在对话中切换模式。推理能力显著超过QwQ、通用能力显著超过Qwen2.5-Plus，达到同规模业界SOTA水平。",
+                      "aliyunRecommend": false,
+                      "collectionTag": "qwen3",
+                      "features": [
+                        "model-experience",
+                        "function-calling",
+                        "structured-outputs",
+                        "web-search",
+                        "prefix-completion",
+                        "cache",
+                        "batch"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 997952,
+                        "maxReasoningTokens": 81920,
+                        "reasoningMaxInputTokens": 995904,
+                        "maxOutputTokens": 32768,
+                        "reasoningMaxOutputTokens": 32768
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "fineTune": false,
+                        "app": true,
+                        "dpo": false,
+                        "inference": true,
+                        "selfServiceLimitIncrease": true,
+                        "cpt": false,
+                        "checkpointImport": false,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": false,
+                        "sellingByQpm": false,
+                        "tokenizer": false,
+                        "workflowText": true,
+                        "experienceV2": false,
+                        "eval": true,
+                        "experienceUpcoming": false,
+                        "appV2": true,
+                        "appV1": true
+                      },
+                      "model": "qwen-plus",
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 30,
+                          "usage_limit": 2500000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 15000,
+                          "usage_limit_period": 30,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "multiPrices": [
+                        {
+                          "rangeStart": 0,
+                          "rangeName": "输入<=128k",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2",
+                              "timeBand": "standard",
+                              "ntmAmountType": "output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.16",
+                              "timeBand": "standard",
+                              "ntmAmountType": "input_token_cache",
+                              "type": "input_token_cache",
+                              "priceName": "输入（缓存命中）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.16",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_input_token_cache",
+                              "type": "thinking_input_token_cache",
+                              "priceName": "输入（思考模式缓存命中）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_output_token_batch",
+                              "type": "thinking_output_token_batch",
+                              "priceName": "思考模式输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "input_token_batch",
+                              "type": "input_token_batch",
+                              "priceName": "输入（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1",
+                              "timeBand": "standard",
+                              "ntmAmountType": "output_token_batch",
+                              "type": "output_token_batch",
+                              "priceName": "输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_input_token_batch",
+                              "type": "thinking_input_token_batch",
+                              "priceName": "输入（思考模式 Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1",
+                              "timeBand": "standard",
+                              "ntmAmountType": "input_token_cache_creation_5m",
+                              "type": "input_token_cache_creation_5m",
+                              "priceName": "显式缓存创建"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.08",
+                              "timeBand": "standard",
+                              "ntmAmountType": "input_token_cache_read",
+                              "type": "input_token_cache_read",
+                              "priceName": "显式缓存命中"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_input_token_cache_creation_5m",
+                              "type": "thinking_input_token_cache_creation_5m",
+                              "priceName": "显式缓存创建（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.08",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_input_token_cache_read",
+                              "type": "thinking_input_token_cache_read",
+                              "priceName": "显式缓存命中（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "input_token_batch",
+                              "type": "input_token_batch_chat",
+                              "priceName": "输入（Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "output_token_batch",
+                              "type": "output_token_batch_chat",
+                              "priceName": "输出（Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "thinking_input_token_batch",
+                              "type": "thinking_input_token_batch_chat",
+                              "priceName": "输入（思考模式 Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "8",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "thinking_output_token_batch",
+                              "type": "thinking_output_token_batch_chat",
+                              "priceName": "输出（思考模式 Batch Chat)"
+                            }
+                          ],
+                          "rangeEnd": 131072
+                        },
+                        {
+                          "rangeStart": 131072,
+                          "rangeName": "128k<输入<=256k",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "20",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "24",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.48",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token_cache",
+                              "type": "input_token_cache",
+                              "priceName": "输入（缓存命中）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.48",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token_cache",
+                              "type": "thinking_input_token_cache",
+                              "priceName": "输入（思考模式缓存命中）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "12",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_output_token_batch",
+                              "type": "thinking_output_token_batch",
+                              "priceName": "思考模式输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1.2",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token_batch",
+                              "type": "input_token_batch",
+                              "priceName": "输入（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "10",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_output_token_batch",
+                              "type": "output_token_batch",
+                              "priceName": "输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1.2",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token_batch",
+                              "type": "thinking_input_token_batch",
+                              "priceName": "输入（思考模式 Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "3",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token_cache_creation_5m",
+                              "type": "input_token_cache_creation_5m",
+                              "priceName": "显式缓存创建"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.24",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token_cache_read",
+                              "type": "input_token_cache_read",
+                              "priceName": "显式缓存命中"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "3",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token_cache_creation_5m",
+                              "type": "thinking_input_token_cache_creation_5m",
+                              "priceName": "显式缓存创建（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.24",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token_cache_read",
+                              "type": "thinking_input_token_cache_read",
+                              "priceName": "显式缓存命中（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "context_128k-256k_input_token_batch",
+                              "type": "input_token_batch_chat",
+                              "priceName": "输入（Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "20",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "context_128k-256k_output_token_batch",
+                              "type": "output_token_batch_chat",
+                              "priceName": "输出（Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "thinking_context_128k-256k_input_token_batch",
+                              "type": "thinking_input_token_batch_chat",
+                              "priceName": "输入（思考模式 Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "24",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "thinking_context_128k-256k_output_token_batch",
+                              "type": "thinking_output_token_batch_chat",
+                              "priceName": "输出（思考模式 Batch Chat)"
+                            }
+                          ],
+                          "rangeEnd": 262144
+                        },
+                        {
+                          "rangeStart": 262144,
+                          "rangeName": "256k<输入<=1m",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "48",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "64",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.96",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token_cache",
+                              "type": "input_token_cache",
+                              "priceName": "输入（缓存命中）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.96",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token_cache",
+                              "type": "thinking_input_token_cache",
+                              "priceName": "输入（思考模式缓存命中）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "32",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_output_token_batch",
+                              "type": "thinking_output_token_batch",
+                              "priceName": "思考模式输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token_batch",
+                              "type": "input_token_batch",
+                              "priceName": "输入（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "24",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_output_token_batch",
+                              "type": "output_token_batch",
+                              "priceName": "输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token_batch",
+                              "type": "thinking_input_token_batch",
+                              "priceName": "输入（思考模式 Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "6",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token_cache_creation_5m",
+                              "type": "input_token_cache_creation_5m",
+                              "priceName": "显式缓存创建"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.48",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token_cache_read",
+                              "type": "input_token_cache_read",
+                              "priceName": "显式缓存命中"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "6",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token_cache_creation_5m",
+                              "type": "thinking_input_token_cache_creation_5m",
+                              "priceName": "显式缓存创建（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.48",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token_cache_read",
+                              "type": "thinking_input_token_cache_read",
+                              "priceName": "显式缓存命中（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "context_256k-1m_input_token_batch",
+                              "type": "input_token_batch_chat",
+                              "priceName": "输入（Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "48",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "context_256k-1m_output_token_batch",
+                              "type": "output_token_batch_chat",
+                              "priceName": "输出（Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "thinking_context_256k-1m_input_token_batch",
+                              "type": "thinking_input_token_batch_chat",
+                              "priceName": "输入（思考模式 Batch Chat)"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "64",
+                              "timeBand": "standard",
+                              "discount": 0.5,
+                              "ntmAmountType": "thinking_context_256k-1m_output_token_batch",
+                              "type": "thinking_output_token_batch_chat",
+                              "priceName": "输出（思考模式 Batch Chat)"
+                            }
+                          ],
+                          "rangeEnd": 1000000
+                        }
+                      ],
+                      "capabilities": [
+                        "Reasoning",
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "MAJOR",
+                      "shortDescription": "Qwen3系列Plus模型，实现思考模式和非思考模式的有效融合，可在对话中切换模式。推理能力显著超过QwQ、通用能力显著超过Qwen2.5-Plus，达到同规模业界SOTA水平。",
+                      "maxOutputTokens": 32768,
+                      "latestOnlineAt": "2025-06-23T16:00:00.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 997952,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen-Plus",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-reference",
+                      "needApply": false
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "updateAt": "2025-07-30T16:00:00.000+00:00",
+                      "description": "千问系列能力均衡的模型，推理效果和速度介于千问-Max和千问-Turbo之间，适合中等复杂任务。本模型是动态更新版本，模型更新不会提前通知。",
+                      "aliyunRecommend": false,
+                      "collectionTag": "qwen3",
+                      "features": [
+                        "model-experience",
+                        "function-calling",
+                        "structured-outputs",
+                        "web-search",
+                        "prefix-completion",
+                        "batch"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 995904,
+                        "maxOutputTokens": 32768
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "fineTune": false,
+                        "app": true,
+                        "dpo": false,
+                        "inference": true,
+                        "selfServiceLimitIncrease": true,
+                        "cpt": false,
+                        "checkpointImport": false,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": false,
+                        "sellingByQpm": false,
+                        "tokenizer": false,
+                        "workflowText": true,
+                        "experienceV2": false,
+                        "eval": true,
+                        "experienceUpcoming": false,
+                        "appV2": true,
+                        "appV1": true
+                      },
+                      "model": "qwen-plus-latest",
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 30,
+                          "usage_limit": 200000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 7500,
+                          "usage_limit_period": 10,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "multiPrices": [
+                        {
+                          "rangeStart": 0,
+                          "rangeName": "输入<=128k",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2",
+                              "timeBand": "standard",
+                              "ntmAmountType": "output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_output_token_batch",
+                              "type": "thinking_output_token_batch",
+                              "priceName": "思考模式输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "input_token_batch",
+                              "type": "input_token_batch",
+                              "priceName": "输入（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1",
+                              "timeBand": "standard",
+                              "ntmAmountType": "output_token_batch",
+                              "type": "output_token_batch",
+                              "priceName": "输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_input_token_batch",
+                              "type": "thinking_input_token_batch",
+                              "priceName": "输入（思考模式 Batch File）"
+                            }
+                          ],
+                          "rangeEnd": 131072
+                        },
+                        {
+                          "rangeStart": 131072,
+                          "rangeName": "128k<输入<=256k",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "20",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "24",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "12",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_output_token_batch",
+                              "type": "thinking_output_token_batch",
+                              "priceName": "思考模式输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1.2",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token_batch",
+                              "type": "input_token_batch",
+                              "priceName": "输入（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "10",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_output_token_batch",
+                              "type": "output_token_batch",
+                              "priceName": "输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "1.2",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token_batch",
+                              "type": "thinking_input_token_batch",
+                              "priceName": "输入（思考模式 Batch File）"
+                            }
+                          ],
+                          "rangeEnd": 262144
+                        },
+                        {
+                          "rangeStart": 262144,
+                          "rangeName": "256k<输入<=1m",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "48",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "64",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "32",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_output_token_batch",
+                              "type": "thinking_output_token_batch",
+                              "priceName": "思考模式输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token_batch",
+                              "type": "input_token_batch",
+                              "priceName": "输入（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "24",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_output_token_batch",
+                              "type": "output_token_batch",
+                              "priceName": "输出（Batch File）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token_batch",
+                              "type": "thinking_input_token_batch",
+                              "priceName": "输入（思考模式 Batch File）"
+                            }
+                          ],
+                          "rangeEnd": 1000000
+                        }
+                      ],
+                      "capabilities": [
+                        "Reasoning",
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "LATEST",
+                      "shortDescription": "千问系列能力均衡的模型，推理效果和速度介于千问-Max和千问-Turbo之间，适合中等复杂任务。本模型是动态更新版本，模型更新不会提前通知。",
+                      "maxOutputTokens": 32768,
+                      "latestOnlineAt": "2025-07-30T16:00:00.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 995904,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen-Plus-Latest",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-reference",
+                      "needApply": false
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "updateAt": "2025-12-01T02:32:00.000+00:00",
+                      "description": "本版本为2025年12月1日快照，相较7月28日快照在推理能力上有提升；智能体能力、多轮工具调用能力进一步增强；主观创作类任务表现更优。支持1M上下文长度，按照上下文长度进行阶梯计费。",
+                      "aliyunRecommend": false,
+                      "collectionTag": "qwen3",
+                      "features": [
+                        "model-experience",
+                        "function-calling",
+                        "structured-outputs",
+                        "web-search",
+                        "prefix-completion"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 1000000,
+                        "maxInputTokens": 997952,
+                        "reasoningMaxInputTokens": 995904,
+                        "maxOutputTokens": 32768,
+                        "reasoningMaxOutputTokens": 32768
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "fineTune": false,
+                        "app": false,
+                        "dpo": false,
+                        "inference": true,
+                        "cpt": false,
+                        "checkpointImport": false,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": true,
+                        "sellingByQpm": false,
+                        "tokenizer": false,
+                        "experienceV2": false,
+                        "eval": false,
+                        "experienceUpcoming": false
+                      },
+                      "model": "qwen-plus-2025-12-01",
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 60,
+                          "usage_limit": 1000000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 120,
+                          "usage_limit_period": 60,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "multiPrices": [
+                        {
+                          "rangeStart": 0,
+                          "rangeName": "输入<=128k",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_0-128k_input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_0-128k_output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "0.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_0-128k_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_0-128k_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            }
+                          ],
+                          "rangeEnd": 131072
+                        },
+                        {
+                          "rangeStart": 131072,
+                          "rangeName": "128k<输入<=256k",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "20",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_128k-256k_output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "2.4",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "24",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_128k-256k_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            }
+                          ],
+                          "rangeEnd": 262144
+                        },
+                        {
+                          "rangeStart": 262144,
+                          "rangeName": "256k<输入<=1m",
+                          "prices": [
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_input_token",
+                              "type": "input_token",
+                              "priceName": "输入"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "48",
+                              "timeBand": "standard",
+                              "ntmAmountType": "context_256k-1m_output_token",
+                              "type": "output_token",
+                              "priceName": "输出"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "4.8",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_input_token",
+                              "type": "thinking_input_token",
+                              "priceName": "输入（思考）"
+                            },
+                            {
+                              "priceUnit": "每百万tokens",
+                              "price": "64",
+                              "timeBand": "standard",
+                              "ntmAmountType": "thinking_context_256k-1m_output_token",
+                              "type": "thinking_output_token",
+                              "priceName": "输出（思考）"
+                            }
+                          ],
+                          "rangeEnd": 1000000
+                        }
+                      ],
+                      "capabilities": [
+                        "TG",
+                        "Reasoning"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "本版本为2025年12月1日快照，相较7月28日快照在推理能力上有提升；智能体能力、多轮工具调用能力进一步增强；主观创作类任务表现更优。支持1M上下文长度，按照上下文长度进行阶梯计费。",
+                      "maxOutputTokens": 32768,
+                      "latestOnlineAt": "2025-12-01T02:32:00.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 1000000,
+                      "maxInputTokens": 997952,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen-Plus-2025-12-01",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-reference",
+                      "needApply": false,
+                      "category": "Flagship"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "updateAt": "2025-07-16T06:53:53.000+00:00",
+                      "description": "Qwen3系列Plus模型，实现思考模式和非思考模式的有效融合，可在对话中切换模式。此版本为2025年7月14日快照模型，相较上个版本在非thinking模式下中英文能力均有大幅提升，工具调用能力专项增强。",
+                      "aliyunRecommend": false,
+                      "collectionTag": "qwen3",
+                      "features": [
+                        "model-experience",
+                        "function-calling",
+                        "structured-outputs",
+                        "web-search",
+                        "prefix-completion"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 131072,
+                        "maxInputTokens": 98304,
+                        "maxOutputTokens": 16384
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "fineTune": false,
+                        "app": true,
+                        "dpo": false,
+                        "inference": true,
+                        "cpt": false,
+                        "checkpointImport": false,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": false,
+                        "sellingByQpm": false,
+                        "tokenizer": false,
+                        "workflowText": true,
+                        "experienceV2": false,
+                        "eval": true,
+                        "experienceUpcoming": false,
+                        "appV1": true
+                      },
+                      "model": "qwen-plus-2025-07-14",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.8",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "2",
+                          "timeBand": "standard",
+                          "ntmAmountType": "output_token",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.8",
+                          "timeBand": "standard",
+                          "ntmAmountType": "thinking_input_token",
+                          "type": "thinking_input_token",
+                          "priceName": "输入（思考）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "8",
+                          "timeBand": "standard",
+                          "ntmAmountType": "thinking_output_token",
+                          "type": "thinking_output_token",
+                          "priceName": "输出（思考）"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 5,
+                          "usage_limit": 100000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 5,
+                          "usage_limit_period": 60,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "capabilities": [
+                        "Reasoning",
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "modelAlias": "qwen-plus-0714",
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "Qwen3系列Plus模型，实现思考模式和非思考模式的有效融合，可在对话中切换模式。此版本为2025年7月14日快照模型，相较上个版本在非thinking模式下中英文能力均有大幅提升，工具调用能力专项增强。",
+                      "maxOutputTokens": 16384,
+                      "latestOnlineAt": "2025-07-16T06:53:53.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 131072,
+                      "maxInputTokens": 98304,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen-Plus-2025-07-14",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-reference",
+                      "needApply": false,
+                      "category": "Flagship"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "updateAt": "2025-04-28T22:46:35.000+00:00",
+                      "description": "Qwen3系列Plus模型，实现思考模式和非思考模式的有效融合，可在对话中切换模式。推理能力显著超过QwQ、通用能力显著超过Qwen2.5-Plus，达到同规模业界SOTA水平。此版本为2025年4月28日快照模型。",
+                      "aliyunRecommend": false,
+                      "collectionTag": "qwen3",
+                      "features": [
+                        "model-experience",
+                        "function-calling",
+                        "structured-outputs",
+                        "prefix-completion"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 131072,
+                        "maxInputTokens": 98304,
+                        "maxOutputTokens": 16384
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "fineTune": false,
+                        "app": true,
+                        "dpo": false,
+                        "inference": true,
+                        "cpt": false,
+                        "checkpointImport": false,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": false,
+                        "sellingByQpm": false,
+                        "tokenizer": false,
+                        "workflowText": true,
+                        "experienceV2": false,
+                        "eval": true,
+                        "experienceUpcoming": false,
+                        "appV1": true
+                      },
+                      "model": "qwen-plus-2025-04-28",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.8",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "2",
+                          "timeBand": "standard",
+                          "ntmAmountType": "output_token",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.8",
+                          "timeBand": "standard",
+                          "ntmAmountType": "thinking_input_token",
+                          "type": "thinking_input_token",
+                          "priceName": "输入（思考）"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "8",
+                          "timeBand": "standard",
+                          "ntmAmountType": "thinking_output_token",
+                          "type": "thinking_output_token",
+                          "priceName": "输出（思考）"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 1,
+                          "usage_limit": 1000000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 1,
+                          "usage_limit_period": 60,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "capabilities": [
+                        "Reasoning",
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "modelAlias": "qwen-plus-0428",
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "Qwen3系列Plus模型，实现思考模式和非思考模式的有效融合，可在对话中切换模式。推理能力显著超过QwQ、通用能力显著超过Qwen2.5-Plus，达到同规模业界SOTA水平。此版本为2025年4月28日快照模型。",
+                      "maxOutputTokens": 16384,
+                      "latestOnlineAt": "2025-04-28T22:46:35.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 131072,
+                      "maxInputTokens": 98304,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen-Plus-2025-04-28",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-reference",
+                      "needApply": false,
+                      "category": "Flagship"
+                    },
+                    {
+                      "inferenceMetadata": {
+                        "response_modality": [
+                          "Text"
+                        ],
+                        "request_modality": [
+                          "Text"
+                        ]
+                      },
+                      "applyType": 0,
+                      "updateAt": "2025-02-03T10:32:17.000+00:00",
+                      "description": "千问系列能力均衡的模型，推理效果和速度介于千问-Max和千问-Turbo之间，适合中等复杂任务。相对于通义千问-Plus-2025-0112版本，整体中英文能力都有综合能力升级，中英文code能力、逻辑能力、多语言能力显著提升，回复风格面向人类偏好进行大幅调整，尤其是数学、逻辑推理、知识问答等客观类query，模型回复详实程度和格式清晰度明显改善，创作类专项、json格式遵循专项、角色扮演专项能力均定向提升，预计维护至下一个快照上线前一个月。",
+                      "aliyunRecommend": false,
+                      "features": [
+                        "model-experience",
+                        "function-calling",
+                        "structured-outputs",
+                        "prefix-completion"
+                      ],
+                      "modelInfo": {
+                        "contextWindow": 131072,
+                        "maxInputTokens": 129024,
+                        "maxOutputTokens": 8192
+                      },
+                      "provider": "qwen",
+                      "permissions": {
+                        "inference": true
+                      },
+                      "quota": {},
+                      "scope": "PUBLIC",
+                      "providerIconUrl": "https://img.alicdn.com/imgextra/i2/O1CN0117jcJ81NSCCOQHyGH_!!6000000001568-55-tps-40-40.svg",
+                      "supports": {
+                        "sft": false,
+                        "fineTune": false,
+                        "app": true,
+                        "dpo": false,
+                        "inference": true,
+                        "cpt": false,
+                        "checkpointImport": false,
+                        "experience": true,
+                        "displayQpmLimit": true,
+                        "deploy": false,
+                        "sellingByQpm": false,
+                        "tokenizer": false,
+                        "workflowText": true,
+                        "experienceV2": false,
+                        "eval": true,
+                        "experienceUpcoming": false,
+                        "appV1": true
+                      },
+                      "model": "qwen-plus-2025-01-25",
+                      "prices": [
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "0.8",
+                          "timeBand": "standard",
+                          "ntmAmountType": "input_token",
+                          "type": "input_token",
+                          "priceName": "输入"
+                        },
+                        {
+                          "priceUnit": "每百万tokens",
+                          "price": "2",
+                          "timeBand": "standard",
+                          "ntmAmountType": "output_token",
+                          "type": "output_token",
+                          "priceName": "输出"
+                        }
+                      ],
+                      "qpmInfo": {
+                        "model-default-actual": {
+                          "count_limit_period": 5,
+                          "usage_limit": 150000,
+                          "usage_limit_field": "total_tokens",
+                          "count_limit": 5,
+                          "usage_limit_period": 60,
+                          "type": "model-default"
+                        }
+                      },
+                      "serviceSites": [
+                        "asia-pacific-china"
+                      ],
+                      "priceTimeBands": [
+                        "standard"
+                      ],
+                      "capabilities": [
+                        "TG"
+                      ],
+                      "activationStatus": 0,
+                      "versionTag": "SNAPSHOT",
+                      "shortDescription": "千问系列能力均衡的模型，推理效果和速度介于千问-Max和千问-Turbo之间，适合中等复杂任务。相对于通义千问-Plus-2025-0112版本，整体中英文能力都有综合能力升级，中英文code能力、逻辑能力、多语言能力显著提升，回复风格面向人类偏好进行大幅调整，尤其是数学、逻辑推理、知识问答等客观类query，模型回复详实程度和格式清晰度明显改善，创作类专项、json格式遵循专项、角色扮演专项能力均定向提升，预计维护至下一个快照上线前一个月。",
+                      "maxOutputTokens": 8192,
+                      "latestOnlineAt": "2025-02-03T10:32:17.000+00:00",
+                      "tags": [],
+                      "license": {},
+                      "contextWindow": 131072,
+                      "maxInputTokens": 129024,
+                      "inferenceProvider": "aliyun-bailian",
+                      "name": "Qwen-Plus-2025-01-25",
+                      "docUrl": "https://docs.bailian.console.aliyun.com/zh/model-studio/qwen-api-reference",
+                      "needApply": false
+                    }
+                  ],
+                  "providers": [
+                    "qwen"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "batch_chat_doc": "其最终费用为实时调用价格的 50%"
+}
