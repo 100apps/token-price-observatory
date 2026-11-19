@@ -1,22 +1,22 @@
 {
-  "attempted_at": "2026-11-19T10:26:58.639566+00:00",
-  "last_success_at": "2026-11-19T10:26:58.639566+00:00",
+  "attempted_at": "2026-11-19T15:55:10.694614+00:00",
+  "last_success_at": "2026-11-19T15:55:10.694614+00:00",
   "status": "degraded",
   "fresh_official_quotes": 884,
   "failed_sources": [
     "openai",
     "minimax"
   ],
-  "review_warnings": 78,
+  "review_warnings": 79,
   "sources": [
     {
       "provider": "fx_ecb",
       "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
-      "attempted_at": "2026-11-19T10:26:58.639566+00:00",
-      "raw": "data/raw/44/44c3e8a03fd098aef76d14fe28f9ef39f4c7a354c0c188a16be2b3c7ea99dfb6.xml.gz",
-      "sha256": "44c3e8a03fd098aef76d14fe28f9ef39f4c7a354c0c188a16be2b3c7ea99dfb6",
+      "attempted_at": "2026-11-19T15:55:10.694614+00:00",
+      "raw": "data/raw/ae/ae0bc75c4dfc63124f3b6219a8422fa7ca587670206ce063fcc6bfec55d38430.xml.gz",
+      "sha256": "ae0bc75c4dfc63124f3b6219a8422fa7ca587670206ce063fcc6bfec55d38430",
       "status": "parsed",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "count": 1
     },
     {
@@ -24,18 +24,18 @@
       "url": "https://openrouter.ai/api/v1/models",
       "final_url": "https://openrouter.ai/api/v1/models",
       "status": "parsed",
-      "sha256": "ed84ff0d552455c890d2dba254ad39de0ccf0d7a351ddb8f724de33f235feeb6",
-      "raw": "data/raw/ed/ed84ff0d552455c890d2dba254ad39de0ccf0d7a351ddb8f724de33f235feeb6.json.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "83018638f0d395bf563b7b91d20265cbf85fc6e7ae2f415fe98539afdf32b7dd",
+      "raw": "data/raw/83/83018638f0d395bf563b7b91d20265cbf85fc6e7ae2f415fe98539afdf32b7dd.json.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "warnings": [
         "Price changed over 50% or crossed zero; manual review required: openrouter:moonshotai/kimi-k3.1-pro:standard / input",
-        "Price changed over 50% or crossed zero; manual review required: openrouter:minimax/minimax-m3.1-flash:standard / input",
         "Price changed over 50% or crossed zero; manual review required: openrouter:deepseek/deepseek-v4.1-flash-1017:batch:standard / input",
         "Price changed over 50% or crossed zero; manual review required: openrouter:~deepseek/deepseek-flash-latest:standard / input",
         "Price changed over 50% or crossed zero; manual review required: openrouter:~openai/gpt-astra-latest:standard / cache_read",
-        "Price changed over 50% or crossed zero; manual review required: openrouter:deepseek/deepseek-v4.1-flash:standard / input",
+        "Price changed over 50% or crossed zero; manual review required: openrouter:deepseek/deepseek-v4.1-flash:standard / output",
         "Price changed over 50% or crossed zero; manual review required: openrouter:z-ai/glm-5.3-flash:batch:standard / input",
         "Price changed over 50% or crossed zero; manual review required: openrouter:qwen/qwen3.8-27b:standard / input",
+        "Price changed over 50% or crossed zero; manual review required: openrouter:~deepseek/deepseek-v4-flash-latest:standard / output",
         "Price changed over 50% or crossed zero; manual review required: openrouter:tencent/hy3:standard / input",
         "Price changed over 50% or crossed zero; manual review required: openrouter:z-ai/glm-5.2:standard / input",
         "Price changed over 50% or crossed zero; manual review required: openrouter:~google/gemini-flash-latest:standard / input",
@@ -48,6 +48,7 @@
         "Price changed over 50% or crossed zero; manual review required: openrouter:google/gemma-3-27b-it:standard / output",
         "Price changed over 50% or crossed zero; manual review required: openrouter:meta-llama/llama-3.3-70b-instruct:standard / cache_read",
         "Price changed over 50% or crossed zero; manual review required: openrouter:meta-llama/llama-3.1-8b-instruct:standard / input",
+        "Quote no longer parsed; archived until confirmed removed: openrouter:thinkingmachines/inkling-2-small:free:standard",
         "Quote no longer parsed; archived until confirmed removed: openrouter:stepfun/step-3.5-flash:standard",
         "Quote no longer parsed; archived until confirmed removed: openrouter:qwen/qwen3-vl-30b-a3b-thinking:standard",
         "Quote no longer parsed; archived until confirmed removed: openrouter:tencent/hunyuan-a13b-instruct:standard",
@@ -71,25 +72,25 @@
       "url": "https://bailian.console.aliyun.com/cn-beijing/model/market",
       "final_url": "https://bailian-cs.console.aliyun.com/cli/api.json?action=BroadScopeAspnGateway&product=sfm_bailian&api=zeldaHttp.dashscopeModel.%2Fzelda%2Fapi%2Fv1%2FmodelCenter%2FlistFoundationModels",
       "status": "parsed",
-      "sha256": "d6c701837864d4f15f48daa39069e7c8bb8fbfcd857c24599e1484ce7630b6ac",
-      "raw": "data/raw/d6/d6c701837864d4f15f48daa39069e7c8bb8fbfcd857c24599e1484ce7630b6ac.json.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "8226fd26dce5de1627b0a2942d15d5ca98d5fcf5a8feb556e2f4490e4e90b8e4",
+      "raw": "data/raw/82/8226fd26dce5de1627b0a2942d15d5ca98d5fcf5a8feb556e2f4490e4e90b8e4.json.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "warnings": [
         "Price changed over 50% or crossed zero; manual review required: bailian:market:c670307e6e1f03ab18 / cache_read",
         "Price changed over 50% or crossed zero; manual review required: bailian:market:ddff96984c028aa8e4 / cache_read",
         "Price changed over 50% or crossed zero; manual review required: bailian:market:9c0f2041665ec2d470 / cache_read",
         "Price changed over 50% or crossed zero; manual review required: bailian:market:47b86ec04029c67013 / cache_read"
       ],
-      "count": 238
+      "count": 239
     },
     {
       "provider": "bailian_list",
       "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
       "final_url": "https://help.aliyun.com/zh/model-studio/model-pricing",
       "status": "archived",
-      "sha256": "878936c028891f7d06d733c1b66b8d032977e2279e7de286c208f87cd05811d5",
-      "raw": "data/raw/87/878936c028891f7d06d733c1b66b8d032977e2279e7de286c208f87cd05811d5.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "05f4a8b30d465b01b676fb928b37f664578fd6347890bf7e36ad28618ab9b0b2",
+      "raw": "data/raw/05/05f4a8b30d465b01b676fb928b37f664578fd6347890bf7e36ad28618ab9b0b2.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "community",
@@ -98,7 +99,7 @@
       "status": "parsed",
       "sha256": "35324269521018afbbb23413133d2196b04bdd84a5a6fbf1d1964c8fb42e851d",
       "raw": "data/raw/35/35324269521018afbbb23413133d2196b04bdd84a5a6fbf1d1964c8fb42e851d.json.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "warnings": [
         "Price changed over 50% or crossed zero; manual review required: together_ai:together_ai/Qwen/Qwen3.7-Max:standard / input",
         "Quote no longer parsed; archived until confirmed removed: together_ai:together_ai/MiniMaxAI/MiniMax-M2.7:standard",
@@ -134,9 +135,9 @@
       "url": "https://developers.openai.com/api/docs/pricing",
       "final_url": "https://developers.openai.com/api/docs/pricing",
       "status": "failed",
-      "sha256": "16216d4af21e18323228e826b58c8f03a2c9fe1254c08c263c873412828d41bf",
-      "raw": "data/raw/16/16216d4af21e18323228e826b58c8f03a2c9fe1254c08c263c873412828d41bf.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "174abbb5447f7edb7d7946b75c71f341b5b01f8bc80cdbfcd144d0e26015eceb",
+      "raw": "data/raw/17/174abbb5447f7edb7d7946b75c71f341b5b01f8bc80cdbfcd144d0e26015eceb.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "error": "Conflicting duplicate quote: openai:gpt-6.2-astra:ultrafast"
     },
     {
@@ -144,9 +145,9 @@
       "url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "final_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "status": "parsed",
-      "sha256": "c90026403b806f1c5ea8038cb5a1c2754fb1b18f7ff57a609fdd9638cdc48a33",
-      "raw": "data/raw/c9/c90026403b806f1c5ea8038cb5a1c2754fb1b18f7ff57a609fdd9638cdc48a33.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "e570901fcbadd7b57daa9c49d07b6b565390609ed4d3766af9d0884a0dded04c",
+      "raw": "data/raw/e5/e570901fcbadd7b57daa9c49d07b6b565390609ed4d3766af9d0884a0dded04c.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "count": 22
     },
     {
@@ -154,9 +155,9 @@
       "url": "https://ai.google.dev/gemini-api/docs/pricing",
       "final_url": "https://aistudio.google.com/docs/pricing",
       "status": "archived",
-      "sha256": "c6110e326da79fd2744cb8d63001b00ef2d9252a4490323d98e53280e6c9be51",
-      "raw": "data/raw/c6/c6110e326da79fd2744cb8d63001b00ef2d9252a4490323d98e53280e6c9be51.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "867053215e6786f1369ff8d8f1e62363435296a6fd8a73781a87143c125548f3",
+      "raw": "data/raw/86/867053215e6786f1369ff8d8f1e62363435296a6fd8a73781a87143c125548f3.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "deepseek",
@@ -165,7 +166,7 @@
       "status": "parsed",
       "sha256": "102c46b3e4f9c62258cbbb79ae974152f1b36584852af7b1d709af1979c90a95",
       "raw": "data/raw/10/102c46b3e4f9c62258cbbb79ae974152f1b36584852af7b1d709af1979c90a95.md.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "count": 4
     },
     {
@@ -173,9 +174,9 @@
       "url": "https://platform.kimi.com/docs/pricing/chat",
       "final_url": "https://platform.kimi.com/docs/pricing/chat",
       "status": "parsed",
-      "sha256": "a25b776ac50999b18f0c7f6a1b61e7abf0cc1ebaccb51f989311df1ad9045e2d",
-      "raw": "data/raw/a2/a25b776ac50999b18f0c7f6a1b61e7abf0cc1ebaccb51f989311df1ad9045e2d.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "9e467c4d2ad60546e9536efc5b923011631d2e32b352d001c54d87a41817a301",
+      "raw": "data/raw/9e/9e467c4d2ad60546e9536efc5b923011631d2e32b352d001c54d87a41817a301.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "warnings": [
         "Quote no longer parsed; archived until confirmed removed: moonshot:cn:kimi-k2.7-code:8849979a5d90",
         "Quote no longer parsed; archived until confirmed removed: moonshot:cn:kimi-k2.7-code-highspeed:06fba2de0cf8",
@@ -190,7 +191,7 @@
       "status": "parsed",
       "sha256": "615f8993915c2aea98f5ed05b401a7701dc0381db7325553fadd680e71bec70b",
       "raw": "data/raw/61/615f8993915c2aea98f5ed05b401a7701dc0381db7325553fadd680e71bec70b.md.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "count": 44
     },
     {
@@ -198,18 +199,18 @@
       "url": "https://www.volcengine.com/docs/82379/1544106",
       "final_url": "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
       "status": "archived",
-      "sha256": "15a8b0b4a39da96e448edd1dbf88d17b301cf4540b098f104d23cb00128ef6ce",
-      "raw": "data/raw/15/15a8b0b4a39da96e448edd1dbf88d17b301cf4540b098f104d23cb00128ef6ce.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "e48985992e55d97895f04b3e7b03ab1e499b6e48973838b1c08852308aa1829d",
+      "raw": "data/raw/e4/e48985992e55d97895f04b3e7b03ab1e499b6e48973838b1c08852308aa1829d.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "siliconflow",
       "url": "https://siliconflow.cn/pricing",
       "final_url": "https://www.siliconflow.cn/pricing",
       "status": "parsed",
-      "sha256": "f6af0db21d67396e498753e68b4b3383fe20eeafb1ebf17de4df7d60b4a95802",
-      "raw": "data/raw/f6/f6af0db21d67396e498753e68b4b3383fe20eeafb1ebf17de4df7d60b4a95802.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "c57e37cc1810655c8cd4a6482a17d859fd123e9a6ede181c202f42f826957634",
+      "raw": "data/raw/c5/c57e37cc1810655c8cd4a6482a17d859fd123e9a6ede181c202f42f826957634.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "warnings": [
         "Quote no longer parsed; archived until confirmed removed: siliconflow:zai-org/GLM-4.5V:standard",
         "Quote no longer parsed; archived until confirmed removed: siliconflow:tencent/Hunyuan-A13B-Instruct:费用发生时段: 9点～18点",
@@ -228,18 +229,18 @@
       "url": "https://cloud.tencent.com/document/product/1729/97731",
       "final_url": "https://cloud.tencent.com/document/product/1729/97731",
       "status": "archived",
-      "sha256": "79373d937b972274991df9ac81fc9418b8f1be806f2c383d6eb3d7066d003196",
-      "raw": "data/raw/79/79373d937b972274991df9ac81fc9418b8f1be806f2c383d6eb3d7066d003196.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "a0786a26717b79b09fafb61d92fbfb17956d6430a97b3e0df6727faade778c26",
+      "raw": "data/raw/a0/a0786a26717b79b09fafb61d92fbfb17956d6430a97b3e0df6727faade778c26.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "minimax",
       "url": "https://platform.minimax.cn/docs/pricing/overview",
       "final_url": "https://platform.minimax.cn/docs/pricing/overview",
       "status": "failed",
-      "sha256": "c73f91661dddb15321d876ee53a40c4f989b11ed0417b6320705957bf88d46fe",
-      "raw": "data/raw/c7/c73f91661dddb15321d876ee53a40c4f989b11ed0417b6320705957bf88d46fe.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "3dd48f407b31ce48f5a2c88b34bbded6cae306cd0d4db125bfaca5772fcf93a3",
+      "raw": "data/raw/3d/3dd48f407b31ce48f5a2c88b34bbded6cae306cd0d4db125bfaca5772fcf93a3.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "error": "No prices parsed"
     },
     {
@@ -249,34 +250,34 @@
       "status": "archived",
       "sha256": "fbd65d461854238771a9033f4e34acac38fe2202bc0d96a599fced6877e75d4a",
       "raw": "data/raw/fb/fbd65d461854238771a9033f4e34acac38fe2202bc0d96a599fced6877e75d4a.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "xai",
       "url": "https://docs.x.ai/docs/models",
       "final_url": "https://docs.x.ai/developers/models",
       "status": "archived",
-      "sha256": "8bcd8b7e22352bd26b90401b2bac0bea40e4fb9eb9308332594e3c501ffae28b",
-      "raw": "data/raw/8b/8bcd8b7e22352bd26b90401b2bac0bea40e4fb9eb9308332594e3c501ffae28b.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "355d2df44eabb265465bce64bbe7186ecae5dbf676871b04af0e224de1b1e745",
+      "raw": "data/raw/35/355d2df44eabb265465bce64bbe7186ecae5dbf676871b04af0e224de1b1e745.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "together_ai",
       "url": "https://www.together.ai/pricing",
       "final_url": "https://www.together.ai/pricing",
       "status": "archived",
-      "sha256": "f20dafd859a02c64f42e0741004cd247425a186ce715cb6b5db5417a0539a250",
-      "raw": "data/raw/f2/f20dafd859a02c64f42e0741004cd247425a186ce715cb6b5db5417a0539a250.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "3c97b48e03d9ca08f8a92aae15c769678addfd18cdc8e4b593d734342d72f638",
+      "raw": "data/raw/3c/3c97b48e03d9ca08f8a92aae15c769678addfd18cdc8e4b593d734342d72f638.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "deepinfra",
       "url": "https://api.deepinfra.com/models/list",
       "final_url": "https://api.deepinfra.com/models/list",
       "status": "parsed",
-      "sha256": "a013d74d6ceaa4d321683c4f4410df640a5767270bfea911a0d8c3fa259b2cff",
-      "raw": "data/raw/a0/a013d74d6ceaa4d321683c4f4410df640a5767270bfea911a0d8c3fa259b2cff.json.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00",
+      "sha256": "8f1216df9d59662205c4bc60a133d1ee3510c23cd488a3ce56d9019565a9366f",
+      "raw": "data/raw/8f/8f1216df9d59662205c4bc60a133d1ee3510c23cd488a3ce56d9019565a9366f.json.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00",
       "warnings": [
         "Quote no longer parsed; archived until confirmed removed: deepinfra:inclusionAI/Ling-3.1-flash:standard"
       ],
@@ -287,27 +288,27 @@
       "url": "https://fireworks.ai/pricing",
       "final_url": "https://fireworks.ai/pricing",
       "status": "archived",
-      "sha256": "6b2621b90c49b5a491775e571c8f49ece66136357cd1298c0abd91b62e5ad9b7",
-      "raw": "data/raw/6b/6b2621b90c49b5a491775e571c8f49ece66136357cd1298c0abd91b62e5ad9b7.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "a1184fdbe9ed815c4283e23876a9354157619233a5f4adfedd0731d16a3409e1",
+      "raw": "data/raw/a1/a1184fdbe9ed815c4283e23876a9354157619233a5f4adfedd0731d16a3409e1.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "bedrock",
       "url": "https://aws.amazon.com/bedrock/pricing/",
       "final_url": "https://aws.amazon.com/bedrock/pricing/",
       "status": "archived",
-      "sha256": "f942a963432e49fc3b6467f6f5aa84fc2aa67a89e9a25e26b66b7573fbcd5463",
-      "raw": "data/raw/f9/f942a963432e49fc3b6467f6f5aa84fc2aa67a89e9a25e26b66b7573fbcd5463.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "a316b3be79903cfa88bd478087a80c761f40fc135c574ad0d181031bfca90f3c",
+      "raw": "data/raw/a3/a316b3be79903cfa88bd478087a80c761f40fc135c574ad0d181031bfca90f3c.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     },
     {
       "provider": "azure",
       "url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/",
       "final_url": "https://azure.microsoft.com/en-us/pricing/details/azure-openai/",
       "status": "archived",
-      "sha256": "b11481f2bddcf71a162c7994391fd59f7b504b395137985432a0ec05a0e808f8",
-      "raw": "data/raw/b1/b11481f2bddcf71a162c7994391fd59f7b504b395137985432a0ec05a0e808f8.html.gz",
-      "fetched_at": "2026-11-19T10:26:58.639566+00:00"
+      "sha256": "48bf9e4714aee6e70f5b814712ad9d65bc4169a2107d3bd248b9d863fe672a6e",
+      "raw": "data/raw/48/48bf9e4714aee6e70f5b814712ad9d65bc4169a2107d3bd248b9d863fe672a6e.html.gz",
+      "fetched_at": "2026-11-19T15:55:10.694614+00:00"
     }
   ]
 }
