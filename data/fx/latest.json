@@ -1,17 +1,17 @@
 {
   "base": "USD",
   "quote": "CNY",
-  "rate": 6.666666666666667,
-  "rate_date": "2026-11-19",
+  "rate": 6.677707006369427,
+  "rate_date": "2026-11-20",
   "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
   "feed": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
   "method": "ECB CNY per EUR / USD per EUR",
-  "eur_usd": "1.0992",
-  "eur_cny": "7.3280",
-  "observed_at": "2026-11-20T10:06:59.607969+00:00",
+  "eur_usd": "1.0990",
+  "eur_cny": "7.3388",
+  "observed_at": "2026-11-20T15:38:32.342508+00:00",
   "stale": false,
   "evidence": {
-    "raw": "data/raw/ae/ae0bc75c4dfc63124f3b6219a8422fa7ca587670206ce063fcc6bfec55d38430.xml.gz",
-    "sha256": "ae0bc75c4dfc63124f3b6219a8422fa7ca587670206ce063fcc6bfec55d38430"
+    "raw": "data/raw/a2/a234540a78d0bccccc3642bfe604b138310a03741361434907aa4cf3e7622e8a.xml.gz",
+    "sha256": "a234540a78d0bccccc3642bfe604b138310a03741361434907aa4cf3e7622e8a"
   }
 }
