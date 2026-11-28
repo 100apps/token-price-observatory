@@ -8,7 +8,7 @@
   "method": "ECB CNY per EUR / USD per EUR",
   "eur_usd": "1.0957",
   "eur_cny": "7.2912",
-  "observed_at": "2026-11-27T16:51:10.741265+00:00",
+  "observed_at": "2026-11-28T10:33:34.017380+00:00",
   "stale": false,
   "evidence": {
     "raw": "data/raw/04/04260ffcc31751b874cb7d3d7468df4c0ea76cf5bd4ca229d65e93e23c0eca62.xml.gz",
